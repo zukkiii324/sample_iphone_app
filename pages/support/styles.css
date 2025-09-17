@@ -1,0 +1,18 @@
+body.support {
+  --color-accent: #2563eb;
+  --color-accent-soft: rgba(37, 99, 235, 0.18);
+  --color-accent-contrast: #ffffff;
+}
+
+body.support .category-hero {
+  background: linear-gradient(150deg, rgba(37, 99, 235, 0.22), rgba(59, 130, 246, 0.12));
+}
+
+body.support .info-card {
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+body.support .callout {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(37, 99, 235, 0.25);
+}
