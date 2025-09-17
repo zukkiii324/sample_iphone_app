@@ -3,38 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>サンプル静的サイト</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Sample Web Hub</title>
+    <link rel="stylesheet" href="assets/css/base.css" />
   </head>
   <body>
-    <header class="hero">
-      <h1>サンプル静的サイト</h1>
-      <p>GitHub Pages で無料公開できるシンプルなページの例です。</p>
-      <a class="cta" href="#features">特徴を見る</a>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.5 7.2c0-.9.5-1.7 1.2-2.1l5.8-3.3c.9-.5 2-.5 2.9 0l5.8 3.3c.8.4 1.2 1.2 1.2 2.1v6.6c0 .9-.5 1.7-1.2 2.1l-5.8 3.3c-.9.5-2 .5-2.9 0l-5.8-3.3c-.8-.4-1.2-1.2-1.2-2.1V7.2z" />
+          </svg>
+          <span>Sample Web Hub</span>
+        </a>
+        <nav aria-label="主要ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="#about">概要</a></li>
+            <li><a href="#categories">カテゴリ</a></li>
+            <li><a href="#structure">構成</a></li>
+            <li><a href="docs/静的サイト無料デプロイ手順.md">デプロイ手順</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
+    <section class="hero">
+      <div class="container">
+        <h1>カテゴリごとに拡張できる静的サイトの土台</h1>
+        <p>
+          シンプルなホームページに加えて、用途別のサブページをカテゴリごとに整理したフロントエンド構成です。
+          それぞれのページが独立して開発しやすいようにファイルを分割し、スケールするウェブ体験を実現します。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#categories">サブページを見る</a>
+          <a class="button secondary" href="#structure">構成を確認する</a>
+        </div>
+      </div>
+    </section>
+
     <main>
-      <section id="features" class="section">
-        <h2>特徴</h2>
-        <ul class="feature-list">
-          <li>静的 HTML/CSS だけで完結する軽量構成</li>
-          <li>GitHub Pages でホスティングできる</li>
-          <li>スマートフォンでも見やすいレスポンシブデザイン</li>
-        </ul>
+      <section id="about" class="section">
+        <h2 class="section-title">このサイトについて</h2>
+        <p class="lead">
+          このテンプレートは、ホームページと複数のカテゴリに紐付いたサブページをセットで構築するための土台です。
+          デザインシステムや UI パターンを共通化しつつ、各カテゴリページごとに独自のスタイルやコンテンツを展開できます。
+        </p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>共通デザイン</h3>
+            <p>
+              <code>assets/css/base.css</code> に共通スタイルを集約し、ブランドイメージを保ったまま全ページに適用します。
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>カテゴリ別拡張</h3>
+            <p>
+              サブページはカテゴリごとにディレクトリを分割。各ディレクトリ内で個別の CSS やアセットを追加できます。
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>保守しやすい構成</h3>
+            <p>
+              ナビゲーションやパンくずリストなどのパターンを再利用しながら、用途に合わせたページ開発が可能です。
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section class="section alt">
-        <h2>使い方</h2>
-        <ol>
-          <li>リポジトリを作成し、ファイルをコミットします。</li>
-          <li>GitHub Pages を有効化し、公開 URL を確認します。</li>
-          <li>必要に応じて CSS や画像を追加してカスタマイズします。</li>
-        </ol>
+      <section id="categories" class="section">
+        <h2 class="section-title">カテゴリ別サブページ</h2>
+        <p class="lead">
+          それぞれのカテゴリは独立したフォルダに分かれており、個別の開発・公開フローを想定しています。必要に応じて新しいカテゴリを追加し、柔軟にスケールできます。
+        </p>
+        <div class="card-grid">
+          <article class="card">
+            <h3>ビジネスソリューション</h3>
+            <p>
+              企業サイトやサービス紹介ページ向けの構成。事例紹介や CTA を中心にしたレイアウトを想定しています。
+            </p>
+            <ul class="tag-list">
+              <li>業務効率化</li>
+              <li>導入事例</li>
+              <li>BtoB</li>
+            </ul>
+            <a class="button" href="pages/business/index.html">ページを見る</a>
+          </article>
+          <article class="card">
+            <h3>クリエイティブスタジオ</h3>
+            <p>
+              デザイン制作やポートフォリオ向けのページ。ビジュアルを中心にプロジェクト紹介を展開できます。
+            </p>
+            <ul class="tag-list">
+              <li>作品集</li>
+              <li>ブランド</li>
+              <li>UI/UX</li>
+            </ul>
+            <a class="button" href="pages/creative/index.html">ページを見る</a>
+          </article>
+          <article class="card">
+            <h3>サポート＆ラーニング</h3>
+            <p>
+              FAQ やナレッジベース、チュートリアルなどのコンテンツにフォーカスした情報提供ページです。
+            </p>
+            <ul class="tag-list">
+              <li>ヘルプセンター</li>
+              <li>チュートリアル</li>
+              <li>ナレッジ</li>
+            </ul>
+            <a class="button" href="pages/support/index.html">ページを見る</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="structure" class="section">
+        <h2 class="section-title">フロントエンドファイル構成</h2>
+        <p class="lead">
+          ホームとサブページが相互に干渉しないよう、カテゴリごとにフォルダを分割しています。共通スタイルだけを共有し、その他のアセットは各カテゴリ内に配置できます。
+        </p>
+        <pre><code>sample_iphone_app/
+├── index.html                 # ホームページ
+├── assets/
+│   └── css/
+│       └── base.css           # 全ページ共通スタイル
+├── pages/
+│   ├── business/
+│   │   ├── index.html         # ビジネスカテゴリのトップ
+│   │   └── styles.css         # ビジネス専用スタイル
+│   ├── creative/
+│   │   ├── index.html         # クリエイティブカテゴリのトップ
+│   │   └── styles.css         # クリエイティブ専用スタイル
+│   └── support/
+│       ├── index.html         # サポートカテゴリのトップ
+│       └── styles.css         # サポート専用スタイル
+└── docs/…                     # デプロイ手順などの補足資料</code></pre>
       </section>
     </main>
 
-    <footer class="footer">
-      <p>&copy; 2024 Sample Static Site</p>
+    <footer class="site-footer">
+      <div class="container">
+        <strong>Sample Web Hub</strong>
+        <small>&copy; 2024 Sample Static Site. All rights reserved.</small>
+      </div>
     </footer>
   </body>
 </html>
