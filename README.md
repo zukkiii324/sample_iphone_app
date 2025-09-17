@@ -21,8 +21,6 @@
 │   │   ├── index.html
 │   │   └── styles.css
 │   └── lifestyle/               … ファミリー＆ライフスタイルカテゴリのサブサイト
-│       ├── index.html
-│       └── styles.css
 ├── docs/
 │   └── 静的サイト無料デプロイ手順.md … GitHub Pages の手順書（参照用）
 └── 内容.md                       … メモや記事などを置くためのファイル
