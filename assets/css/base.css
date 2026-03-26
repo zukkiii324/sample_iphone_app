@@ -323,30 +323,33 @@ main {
   display: grid;
   gap: 1.5rem;
   margin-top: 2.2rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-a.card-project {
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  padding: 2rem 2rem 2rem 1.6rem;
-  border-left: 4px solid var(--card-accent, var(--color-accent));
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+button.card-project {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.8rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--card-accent, var(--color-accent));
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
   color: inherit;
-  text-decoration: none;
 }
 
-a.card-project:hover,
-a.card-project:focus {
+button.card-project:hover,
+button.card-project:focus-visible {
   box-shadow: 0 16px 48px color-mix(in srgb, var(--card-accent, var(--color-accent)) 20%, transparent);
   transform: translateY(-4px);
-  text-decoration: none;
-  color: inherit;
 }
 
-a.card-project:hover .card-link {
+button.card-project:hover .card-link {
   gap: 0.5rem;
 }
 
@@ -538,6 +541,141 @@ pre {
   font-weight: 600;
 }
 
+/* --- モーダル（プロジェクト概要） --- */
+.project-modal {
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 0;
+  max-width: 560px;
+  width: 92vw;
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  animation: modal-in 0.25s ease;
+  overflow: hidden;
+}
+
+.project-modal::backdrop {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.8rem 1.8rem 0;
+  border-top: 4px solid var(--card-accent, var(--color-accent));
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  flex: 1;
+}
+
+.modal-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--card-accent, var(--color-accent)) 10%, transparent);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  color: var(--card-accent, var(--color-accent));
+}
+
+.modal-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.modal-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.modal-body {
+  padding: 1.5rem 1.8rem;
+}
+
+.modal-body p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin: 0 0 1.2rem;
+}
+
+.modal-body h3 {
+  font-size: 1rem;
+  margin: 0 0 0.6rem;
+}
+
+.modal-body ul:not(.tag-list) {
+  margin: 0 0 1.2rem;
+  padding-left: 1.4rem;
+}
+
+.modal-body ul:not(.tag-list) li {
+  color: var(--color-muted);
+  margin-bottom: 0.3rem;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0 1.8rem 1.8rem;
+}
+
+.modal-go {
+  background: var(--card-accent, var(--color-accent));
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--card-accent, var(--color-accent)) 30%, transparent);
+}
+
+.modal-go:hover,
+.modal-go:focus {
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--card-accent, var(--color-accent)) 40%, transparent);
+}
+
+.modal-back {
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: none;
+}
+
+.modal-back:hover,
+.modal-back:focus {
+  background: var(--color-border);
+  box-shadow: none;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .site-footer {
   margin: 4rem auto 0;
   padding: 3rem 1rem 4rem;
@@ -552,6 +690,10 @@ pre {
 
 /* --- iPad 横向き・小型PC（920px以下） --- */
 @media (max-width: 920px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .section {
     padding: 2.2rem;
   }
@@ -630,10 +772,10 @@ pre {
     grid-template-columns: 1fr;
   }
 
-  a.card-project {
-    grid-template-columns: 56px 1fr;
+  button.card-project {
+    flex-direction: row;
     gap: 1rem;
-    padding: 1.5rem 1.5rem 1.5rem 1.2rem;
+    padding: 1.4rem;
   }
 
   .card-icon {
@@ -644,6 +786,28 @@ pre {
   .card-icon svg {
     width: 24px;
     height: 24px;
+  }
+
+  .project-modal {
+    width: 96vw;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-header {
+    padding: 1.4rem 1.4rem 0;
+  }
+
+  .modal-body {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .modal-footer {
+    padding: 0 1.4rem 1.4rem;
+    flex-direction: column;
+  }
+
+  .modal-footer .button {
+    width: 100%;
   }
 
   .info-card {
@@ -769,13 +933,35 @@ pre {
     font-size: 1.15rem;
   }
 
-  a.card-project {
-    grid-template-columns: 1fr;
-    padding: 1.2rem 1.2rem 1.2rem 1rem;
+  button.card-project {
+    flex-direction: column;
+    padding: 1.2rem;
   }
 
   .card-body h3 {
     font-size: 1.1rem;
+  }
+
+  .project-modal {
+    width: 100vw;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header {
+    padding: 1.2rem 1.2rem 0;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 1rem 1.2rem;
+  }
+
+  .modal-footer {
+    padding: 0 1.2rem 1.2rem;
   }
 
   .info-card {
