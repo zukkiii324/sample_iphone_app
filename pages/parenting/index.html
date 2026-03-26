@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>育児防災チェックリスト | Sample Web Hub</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page parenting">
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="../../index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.5 7.2c0-.9.5-1.7 1.2-2.1l5.8-3.3c.9-.5 2-.5 2.9 0l5.8 3.3c.8.4 1.2 1.2 1.2 2.1v6.6c0 .9-.5 1.7-1.2 2.1l-5.8 3.3c-.9.5-2 .5-2.9 0l-5.8-3.3c-.8-.4-1.2-1.2-1.2-2.1V7.2z" />
+          </svg>
+          <span>Sample Web Hub</span>
+        </a>
+        <nav aria-label="主要ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="../../index.html#projects">カテゴリ一覧</a></li>
+            <li><a href="#when-needed">必要な場面</a></li>
+            <li><a href="#checklist">チェックリスト</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="breadcrumbs" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span aria-hidden="true">/</span>
+        <span>育児防災チェックリスト</span>
+      </nav>
+
+      <section class="category-hero">
+        <h1>育児防災チェックリスト</h1>
+        <p>
+          乳幼児のいるご家庭向けの防災用品チェックリストです。厚生労働省や内閣府の推奨をもとに作成しています。
+          チェック状態はURLで共有でき、家族間での備え確認に活用できます。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#checklist">チェックを始める</a>
+          <a class="button secondary" href="#when-needed">必要な場面を知る</a>
+        </div>
+      </section>
+
+      <div class="category-layout">
+        <aside class="category-navigation">
+          <h2>コンテンツ</h2>
+          <ul>
+            <li><a href="#when-needed">必要な場面</a></li>
+            <li><a href="#checklist">チェックリスト</a></li>
+            <li><a href="#share">共有・カスタマイズ</a></li>
+          </ul>
+        </aside>
+
+        <div class="category-content">
+
+          <!-- どんな時に必要になるか -->
+          <section id="when-needed" class="section">
+            <h2 class="section-title">どんな時に防災用品が必要？</h2>
+            <p>
+              災害はいつ起きるかわかりません。特に乳幼児がいるご家庭では、大人だけの備えでは不十分です。
+              以下のような場面で、子ども専用の備えが命を守ります。
+            </p>
+            <div class="scenario-grid">
+              <div class="scenario-card">
+                <div class="scenario-icon" aria-hidden="true">&#x1F30A;</div>
+                <h3>地震・津波</h3>
+                <p>
+                  大規模地震では、ライフラインが数日〜数週間止まることがあります。
+                  ミルクや離乳食、おむつなどは救援物資に含まれないことが多く、自分で備える必要があります。
+                </p>
+              </div>
+              <div class="scenario-card">
+                <div class="scenario-icon" aria-hidden="true">&#x1F327;</div>
+                <h3>台風・豪雨・洪水</h3>
+                <p>
+                  避難所生活では、普段使い慣れた哺乳瓶や衛生用品がないと赤ちゃんのケアが困難になります。
+                  最低3日分の備蓄が推奨されています。
+                </p>
+              </div>
+              <div class="scenario-card">
+                <div class="scenario-icon" aria-hidden="true">&#x26A1;</div>
+                <h3>停電・断水</h3>
+                <p>
+                  冬場の停電では低体温症のリスクが高まります。
+                  夏場はミルクの衛生管理が難しくなるため、使い捨て哺乳瓶や液体ミルクの備蓄が重要です。
+                </p>
+              </div>
+              <div class="scenario-card">
+                <div class="scenario-icon" aria-hidden="true">&#x1F3E0;</div>
+                <h3>自宅避難</h3>
+                <p>
+                  避難所に行けない場合も想定し、在宅避難用の備蓄も必要です。
+                  特に新生児〜1歳未満のお子さんがいる場合、外出が困難な状況での備えが重要です。
+                </p>
+              </div>
+            </div>
+
+            <div class="callout" style="margin-top: 1.5rem;">
+              <strong>厚生労働省の推奨:</strong>
+              乳幼児のいる家庭では、大人用の備蓄に加えて「最低3日分、できれば7日分」の子ども専用備蓄を用意しましょう。
+              定期的に中身を確認し、消費期限の近いものは入れ替えてください（ローリングストック法）。
+            </div>
+          </section>
+
+          <!-- チェックリスト本体 -->
+          <section id="checklist" class="section">
+            <h2 class="section-title">防災用品チェックリスト</h2>
+
+            <!-- 進捗バー -->
+            <div class="progress-bar-wrapper">
+              <div class="progress-text" id="progress-text">0 / 0 アイテム準備済み</div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- 操作ボタン -->
+            <div class="checklist-controls">
+              <button class="button secondary" id="btn-reset" type="button">すべてリセット</button>
+              <button class="button secondary" id="btn-default" type="button">デフォルトに戻す</button>
+            </div>
+
+            <!-- チェックリスト表示エリア -->
+            <div id="checklist-area"></div>
+
+            <!-- カスタムアイテム追加 -->
+            <div class="add-item-form" id="add-form">
+              <div class="form-group">
+                <label for="new-item-name">アイテム名</label>
+                <input type="text" id="new-item-name" placeholder="例: 抱っこ紐" />
+              </div>
+              <div class="form-group">
+                <label for="new-item-note">メモ（任意）</label>
+                <input type="text" id="new-item-note" placeholder="例: 避難時に両手が使える" />
+              </div>
+              <div class="form-group">
+                <label for="new-item-category">カテゴリ</label>
+                <select id="new-item-category"></select>
+              </div>
+              <button class="button" id="btn-add" type="button">追加</button>
+            </div>
+          </section>
+
+          <!-- 共有セクション -->
+          <section id="share" class="section">
+            <h2 class="section-title">URLで共有・保存</h2>
+            <p>
+              現在のチェック状態やカスタムアイテムはURLに保存されます。
+              下のURLをコピーして家族やパートナーに共有すれば、同じチェックリストを確認できます。
+            </p>
+            <div class="share-section">
+              <h3>共有用URL</h3>
+              <div class="share-url-box">
+                <input type="text" id="share-url" readonly />
+                <button class="button" id="btn-copy" type="button">コピー</button>
+              </div>
+              <div class="copy-feedback" id="copy-feedback"></div>
+            </div>
+
+            <div class="notice-box">
+              <strong>ご注意</strong>
+              このチェックリストはあくまで参考情報です。お子さまの月齢や家族構成に合わせて、
+              必要な備蓄品を調整してください。医薬品については、かかりつけ医にご相談のうえ準備されることをおすすめします。
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <strong>Sample Web Hub</strong>
+        <small>育児防災チェックリスト &copy; 2024</small>
+      </div>
+    </footer>
+
+    <script>
+      /* ==================================================
+         育児防災チェックリスト — メインスクリプト
+         URL ハッシュでチェック状態とカスタムアイテムを共有
+         ================================================== */
+
+      /* --- デフォルトのチェックリストデータ（厚生労働省・内閣府推奨ベース） --- */
+      var DEFAULT_ITEMS = [
+        {
+          category: "food",
+          categoryLabel: "食料・飲料水",
+          categoryIcon: "\uD83C\uDF7C",
+          items: [
+            { id: "f1", label: "液体ミルク（最低3日分）", note: "常温保存可能。哺乳瓶不要のアタッチメント付きが便利" },
+            { id: "f2", label: "粉ミルク（スティックタイプ）", note: "計量不要で衛生的。お湯が必要" },
+            { id: "f3", label: "離乳食・ベビーフード（3日分）", note: "レトルトパウチタイプが軽量で便利" },
+            { id: "f4", label: "飲料水（赤ちゃん用）", note: "軟水を選ぶこと。1日あたり約1リットル目安" },
+            { id: "f5", label: "使い捨て哺乳瓶", note: "洗浄できない状況で役立つ。3〜5本程度" },
+            { id: "f6", label: "赤ちゃん用おやつ", note: "ボーロやせんべいなど、常温保存できるもの" },
+            { id: "f7", label: "使い捨てスプーン・フォーク", note: "離乳食期のお子さん用" }
+          ]
+        },
+        {
+          category: "hygiene",
+          categoryLabel: "衛生用品",
+          categoryIcon: "\uD83E\uDDF4",
+          items: [
+            { id: "h1", label: "おむつ（最低3日分・約20枚）", note: "子どもの体重に合ったサイズを確認" },
+            { id: "h2", label: "おしりふき（2〜3パック）", note: "体拭きや手拭きとしても代用可能" },
+            { id: "h3", label: "ビニール袋（使用済みおむつ用）", note: "消臭機能付きが望ましい。20枚以上" },
+            { id: "h4", label: "除菌ウェットティッシュ", note: "哺乳瓶や食器の簡易洗浄にも使える" },
+            { id: "h5", label: "ガーゼ・タオル", note: "授乳時やお口拭き用。5枚程度" },
+            { id: "h6", label: "歯磨きシート", note: "水が使えない時の口腔ケアに" }
+          ]
+        },
+        {
+          category: "clothing",
+          categoryLabel: "衣類・防寒",
+          categoryIcon: "\uD83E\uDDE5",
+          items: [
+            { id: "c1", label: "着替え（2〜3組）", note: "季節に合わせた肌着・カバーオールなど" },
+            { id: "c2", label: "おくるみ・ブランケット", note: "防寒だけでなく、敷物や目隠しにも活用" },
+            { id: "c3", label: "靴下・帽子", note: "体温調節が苦手な乳幼児の保温に" },
+            { id: "c4", label: "レインコート（幼児用）", note: "雨天時の避難に必要" },
+            { id: "c5", label: "スリーパー・防寒着", note: "避難所での夜間の冷え対策" }
+          ]
+        },
+        {
+          category: "medical",
+          categoryLabel: "医療・健康管理",
+          categoryIcon: "\uD83C\uDFE5",
+          items: [
+            { id: "m1", label: "母子健康手帳（コピー）", note: "予防接種記録や成長記録の控え" },
+            { id: "m2", label: "健康保険証（コピー）", note: "原本でなくコピーでも受診時に役立つ" },
+            { id: "m3", label: "常備薬・処方薬", note: "お薬手帳のコピーも一緒に入れておく" },
+            { id: "m4", label: "体温計", note: "電子体温計。予備の電池も" },
+            { id: "m5", label: "ばんそうこう・消毒液", note: "子ども用の小さいサイズも用意" },
+            { id: "m6", label: "虫除け・日焼け止め", note: "赤ちゃん用の低刺激タイプ" }
+          ]
+        },
+        {
+          category: "essential",
+          categoryLabel: "生活必需品",
+          categoryIcon: "\uD83C\uDFD2",
+          items: [
+            { id: "e1", label: "抱っこ紐・スリング", note: "両手が自由になり避難時に必須" },
+            { id: "e2", label: "防災ホイッスル", note: "救助要請用。子どもの名前を書いておく" },
+            { id: "e3", label: "モバイルバッテリー", note: "情報収集・連絡用スマホの充電に" },
+            { id: "e4", label: "懐中電灯・ヘッドライト", note: "停電時の必需品。予備電池も用意" },
+            { id: "e5", label: "家族の写真・連絡先メモ", note: "はぐれた時の身元確認用" },
+            { id: "e6", label: "おもちゃ・絵本（小さいもの）", note: "避難所での子どものストレス軽減に重要" },
+            { id: "e7", label: "大きめのポリ袋", note: "簡易おむつや防寒、荷物整理に万能" },
+            { id: "e8", label: "ラップフィルム", note: "食器の上に敷いて洗い物を減らせる" }
+          ]
+        }
+      ];
+
+      /* --- 状態管理 --- */
+      var state = {
+        checked: {},
+        customItems: []
+      };
+
+      /* --- URLハッシュからの状態読み込み --- */
+      function loadFromHash() {
+        var hash = location.hash.slice(1);
+        if (!hash) return;
+        try {
+          var json = decodeURIComponent(hash);
+          var data = JSON.parse(json);
+          if (data.c) state.checked = data.c;
+          if (data.x) state.customItems = data.x;
+        } catch (e) {
+          /* ハッシュが不正な場合は無視 */
+        }
+      }
+
+      /* --- 状態をURLハッシュに書き出し --- */
+      function saveToHash() {
+        var data = {};
+        /* チェック済みのアイテムだけ保存 */
+        var checkedIds = {};
+        var hasChecked = false;
+        for (var key in state.checked) {
+          if (state.checked[key]) {
+            checkedIds[key] = 1;
+            hasChecked = true;
+          }
+        }
+        if (hasChecked) data.c = checkedIds;
+        if (state.customItems.length > 0) data.x = state.customItems;
+
+        if (hasChecked || state.customItems.length > 0) {
+          var json = JSON.stringify(data);
+          history.replaceState(null, "", "#" + encodeURIComponent(json));
+        } else {
+          history.replaceState(null, "", location.pathname);
+        }
+        updateShareUrl();
+      }
+
+      /* --- チェックリストの描画 --- */
+      function render() {
+        var area = document.getElementById("checklist-area");
+        area.innerHTML = "";
+
+        /* デフォルト＋カスタムアイテムをカテゴリごとにまとめる */
+        var categories = DEFAULT_ITEMS.map(function (cat) {
+          return {
+            category: cat.category,
+            categoryLabel: cat.categoryLabel,
+            categoryIcon: cat.categoryIcon,
+            items: cat.items.slice()
+          };
+        });
+
+        /* カスタムアイテムを対応カテゴリに追加 */
+        state.customItems.forEach(function (ci) {
+          var found = false;
+          categories.forEach(function (cat) {
+            if (cat.category === ci.category) {
+              cat.items.push({ id: ci.id, label: ci.label, note: ci.note || "", custom: true });
+              found = true;
+            }
+          });
+          if (!found) {
+            categories.push({
+              category: ci.category,
+              categoryLabel: ci.categoryLabel || ci.category,
+              categoryIcon: "\uD83D\uDCCC",
+              items: [{ id: ci.id, label: ci.label, note: ci.note || "", custom: true }]
+            });
+          }
+        });
+
+        var totalCount = 0;
+        var checkedCount = 0;
+
+        categories.forEach(function (cat) {
+          if (cat.items.length === 0) return;
+
+          var section = document.createElement("div");
+          section.className = "checklist-category";
+
+          var heading = document.createElement("h3");
+          heading.innerHTML = '<span class="cat-icon">' + cat.categoryIcon + "</span>" + cat.categoryLabel;
+          section.appendChild(heading);
+
+          cat.items.forEach(function (item) {
+            totalCount++;
+            var isChecked = !!state.checked[item.id];
+            if (isChecked) checkedCount++;
+
+            var row = document.createElement("label");
+            row.className = "checklist-item" + (isChecked ? " checked" : "");
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = isChecked;
+            checkbox.addEventListener("change", function () {
+              state.checked[item.id] = checkbox.checked;
+              row.className = "checklist-item" + (checkbox.checked ? " checked" : "");
+              saveToHash();
+              updateProgress();
+            });
+
+            var info = document.createElement("div");
+            info.className = "item-info";
+            var labelSpan = document.createElement("div");
+            labelSpan.className = "item-label";
+            labelSpan.textContent = item.label;
+            info.appendChild(labelSpan);
+
+            if (item.note) {
+              var noteSpan = document.createElement("div");
+              noteSpan.className = "item-note";
+              noteSpan.textContent = item.note;
+              info.appendChild(noteSpan);
+            }
+
+            row.appendChild(checkbox);
+            row.appendChild(info);
+
+            /* カスタムアイテムには削除ボタン */
+            if (item.custom) {
+              var del = document.createElement("button");
+              del.className = "item-delete";
+              del.type = "button";
+              del.textContent = "\u2715";
+              del.title = "削除";
+              del.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                state.customItems = state.customItems.filter(function (ci) {
+                  return ci.id !== item.id;
+                });
+                delete state.checked[item.id];
+                saveToHash();
+                render();
+              });
+              row.appendChild(del);
+            }
+
+            section.appendChild(row);
+          });
+
+          area.appendChild(section);
+        });
+
+        updateProgressValues(checkedCount, totalCount);
+        updateShareUrl();
+        populateCategorySelect();
+      }
+
+      /* --- 進捗バー更新 --- */
+      function updateProgressValues(checked, total) {
+        var text = document.getElementById("progress-text");
+        var fill = document.getElementById("progress-fill");
+        text.textContent = checked + " / " + total + " アイテム準備済み";
+        fill.style.width = total > 0 ? Math.round((checked / total) * 100) + "%" : "0%";
+      }
+
+      function updateProgress() {
+        var checkboxes = document.querySelectorAll("#checklist-area input[type=checkbox]");
+        var total = checkboxes.length;
+        var checked = 0;
+        checkboxes.forEach(function (cb) {
+          if (cb.checked) checked++;
+        });
+        updateProgressValues(checked, total);
+      }
+
+      /* --- 共有URL更新 --- */
+      function updateShareUrl() {
+        var input = document.getElementById("share-url");
+        if (input) {
+          input.value = location.href;
+        }
+      }
+
+      /* --- カテゴリセレクト生成 --- */
+      function populateCategorySelect() {
+        var select = document.getElementById("new-item-category");
+        if (select.options.length > 0) return;
+        DEFAULT_ITEMS.forEach(function (cat) {
+          var opt = document.createElement("option");
+          opt.value = cat.category;
+          opt.textContent = cat.categoryLabel;
+          select.appendChild(opt);
+        });
+      }
+
+      /* --- イベント設定 --- */
+      function setupEvents() {
+        /* すべてリセット */
+        document.getElementById("btn-reset").addEventListener("click", function () {
+          state.checked = {};
+          saveToHash();
+          render();
+        });
+
+        /* デフォルトに戻す */
+        document.getElementById("btn-default").addEventListener("click", function () {
+          state.checked = {};
+          state.customItems = [];
+          saveToHash();
+          render();
+        });
+
+        /* アイテム追加 */
+        document.getElementById("btn-add").addEventListener("click", addCustomItem);
+        document.getElementById("new-item-name").addEventListener("keydown", function (e) {
+          if (e.key === "Enter") addCustomItem();
+        });
+
+        /* URLコピー */
+        document.getElementById("btn-copy").addEventListener("click", function () {
+          var input = document.getElementById("share-url");
+          input.select();
+          navigator.clipboard.writeText(input.value).then(function () {
+            var fb = document.getElementById("copy-feedback");
+            fb.textContent = "コピーしました！";
+            setTimeout(function () { fb.textContent = ""; }, 2000);
+          });
+        });
+
+        /* ハッシュ変更時に再読み込み */
+        window.addEventListener("hashchange", function () {
+          loadFromHash();
+          render();
+        });
+      }
+
+      /* --- カスタムアイテム追加 --- */
+      function addCustomItem() {
+        var nameInput = document.getElementById("new-item-name");
+        var noteInput = document.getElementById("new-item-note");
+        var catSelect = document.getElementById("new-item-category");
+        var name = nameInput.value.trim();
+        if (!name) return;
+
+        var id = "custom_" + Date.now();
+        state.customItems.push({
+          id: id,
+          label: name,
+          note: noteInput.value.trim(),
+          category: catSelect.value
+        });
+        nameInput.value = "";
+        noteInput.value = "";
+        saveToHash();
+        render();
+      }
+
+      /* --- 初期化 --- */
+      loadFromHash();
+      render();
+      setupEvents();
+    </script>
+  </body>
+</html>

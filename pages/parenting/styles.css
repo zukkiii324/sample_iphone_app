@@ -1,0 +1,340 @@
+/* ===================================================
+   育児防災チェックリスト — カテゴリ固有スタイル
+   アクセントカラー: ローズ #e11d48
+   =================================================== */
+
+:root {
+  --color-accent: #e11d48;
+  --color-accent-soft: rgba(225, 29, 72, 0.10);
+  --color-accent-contrast: #ffffff;
+}
+
+/* --- ヒーローセクション --- */
+.category-hero {
+  background: linear-gradient(135deg, #fff1f2 0%, #fce7f3 50%, #f0f9ff 100%);
+}
+
+/* --- 説明セクション --- */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.scenario-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scenario-card .scenario-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.scenario-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.scenario-card p {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* --- チェックリスト --- */
+.checklist-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.checklist-controls .button {
+  font-size: 0.85rem;
+  padding: 0.5rem 1.2rem;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-wrapper .progress-text {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.4rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.checklist-category {
+  margin-bottom: 1.8rem;
+}
+
+.checklist-category h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checklist-category h3 .cat-icon {
+  font-size: 1.2rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: var(--radius-md);
+  transition: background 0.15s ease;
+  cursor: pointer;
+}
+
+.checklist-item:hover {
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+}
+
+.checklist-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 2px;
+  transition: all 0.15s ease;
+}
+
+.checklist-item input[type="checkbox"]:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.checklist-item input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checklist-item.checked .item-label {
+  text-decoration: line-through;
+  color: var(--color-muted);
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color 0.15s ease;
+}
+
+.item-note {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+
+.item-delete {
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.checklist-item:hover .item-delete {
+  opacity: 1;
+}
+
+.item-delete:hover {
+  color: var(--color-accent);
+}
+
+/* --- カスタム追加フォーム --- */
+.add-item-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-end;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  border-radius: var(--radius-md);
+}
+
+.add-item-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.add-item-form label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.add-item-form input,
+.add-item-form select {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.add-item-form input:focus,
+.add-item-form select:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  border-color: var(--color-accent);
+}
+
+.add-item-form .button {
+  font-size: 0.85rem;
+  padding: 0.55rem 1.2rem;
+  white-space: nowrap;
+}
+
+/* --- 共有セクション --- */
+.share-section {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  border-radius: var(--radius-md);
+}
+
+.share-section h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.8rem;
+  color: var(--color-text);
+}
+
+.share-url-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.share-url-box input {
+  flex: 1;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-family: monospace;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.share-url-box .button {
+  font-size: 0.82rem;
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+}
+
+.copy-feedback {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-top: 0.4rem;
+  min-height: 1.2em;
+}
+
+/* --- 注意事項 --- */
+.notice-box {
+  background: #fffbeb;
+  border: 1px solid #fbbf24;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  margin-top: 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #92400e;
+}
+
+.notice-box strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 720px) {
+  .scenario-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-item-form {
+    flex-direction: column;
+  }
+
+  .add-item-form .form-group {
+    min-width: 100%;
+  }
+
+  .share-url-box {
+    flex-direction: column;
+  }
+
+  .checklist-item .item-delete {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .checklist-item {
+    padding: 0.6rem 0.4rem;
+  }
+}
