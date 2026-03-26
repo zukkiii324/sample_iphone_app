@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>テニススイング分析 | Sample Web Hub</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- TensorFlow.js と MoveNet モデル -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+  </head>
+  <body class="category-page tennis">
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="../../index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.5 7.2c0-.9.5-1.7 1.2-2.1l5.8-3.3c.9-.5 2-.5 2.9 0l5.8 3.3c.8.4 1.2 1.2 1.2 2.1v6.6c0 .9-.5 1.7-1.2 2.1l-5.8 3.3c-.9.5-2 .5-2.9 0l-5.8-3.3c-.8-.4-1.2-1.2-1.2-2.1V7.2z" />
+          </svg>
+          <span>Sample Web Hub</span>
+        </a>
+        <nav aria-label="主要ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="../../index.html#categories">カテゴリ一覧</a></li>
+            <li><a href="#analysis">スイング分析</a></li>
+            <li><a href="#metrics">数値指標</a></li>
+            <li><a href="#guide">使い方</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="breadcrumbs" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span aria-hidden="true">/</span>
+        <span>テニススイング分析</span>
+      </nav>
+
+      <section class="category-hero">
+        <h1>テニススイング分析</h1>
+        <p>
+          AIによる骨格検出でテニスのスイングフォームをリアルタイムに分析します。
+          カメラまたは動画から関節角度や体幹の傾きを可視化し、フォーム改善に役立てましょう。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#analysis">分析を始める</a>
+          <a class="button secondary" href="#guide">使い方を見る</a>
+        </div>
+      </section>
+
+      <div class="category-layout">
+        <aside class="category-navigation">
+          <h2>コンテンツ</h2>
+          <ul>
+            <li><a href="#analysis">スイング分析</a></li>
+            <li><a href="#metrics">数値指標</a></li>
+            <li><a href="#guide">使い方</a></li>
+          </ul>
+        </aside>
+
+        <div class="category-content">
+          <!-- 分析エリア -->
+          <section id="analysis" class="section">
+            <h2 class="section-title">スイング分析</h2>
+
+            <!-- 操作パネル -->
+            <div class="control-panel">
+              <button id="btn-camera" class="button" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                カメラで分析
+              </button>
+              <label class="button secondary upload-btn" for="video-upload">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                動画をアップロード
+              </label>
+              <input type="file" id="video-upload" accept="video/*" hidden />
+              <button id="btn-snapshot" class="button secondary" type="button" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                スナップショット
+              </button>
+              <button id="btn-stop" class="button secondary" type="button" disabled>停止</button>
+            </div>
+
+            <!-- 分析キャンバスエリア -->
+            <div class="analysis-area">
+              <div class="video-container" id="video-container">
+                <video id="video" playsinline></video>
+                <canvas id="skeleton-canvas"></canvas>
+                <div class="placeholder" id="placeholder">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="5" r="2"/>
+                    <line x1="12" y1="7" x2="12" y2="15"/>
+                    <line x1="12" y1="9" x2="8" y2="13"/>
+                    <line x1="12" y1="9" x2="16" y2="13"/>
+                    <line x1="12" y1="15" x2="9" y2="20"/>
+                    <line x1="12" y1="15" x2="15" y2="20"/>
+                  </svg>
+                  <p>カメラを起動するか、動画をアップロードしてください</p>
+                </div>
+              </div>
+
+              <!-- リアルタイム数値パネル -->
+              <div class="metrics-panel" id="metrics-panel">
+                <h3>リアルタイム数値</h3>
+                <div class="metric-card" id="metric-elbow">
+                  <span class="metric-label">肘角度（ラケット腕）</span>
+                  <span class="metric-value" id="val-elbow">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-elbow"></div></div>
+                  <span class="metric-hint">伸展: 大きいほど腕が伸びている</span>
+                </div>
+                <div class="metric-card" id="metric-shoulder">
+                  <span class="metric-label">肩角度（腕の振り上げ）</span>
+                  <span class="metric-value" id="val-shoulder">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-shoulder"></div></div>
+                  <span class="metric-hint">振り上げの高さを示す</span>
+                </div>
+                <div class="metric-card" id="metric-knee">
+                  <span class="metric-label">膝角度（タメ）</span>
+                  <span class="metric-value" id="val-knee">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-knee"></div></div>
+                  <span class="metric-hint">小さいほど深く曲がっている</span>
+                </div>
+                <div class="metric-card" id="metric-trunk">
+                  <span class="metric-label">体幹傾斜</span>
+                  <span class="metric-value" id="val-trunk">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-trunk"></div></div>
+                  <span class="metric-hint">0°が直立、大きいほど傾いている</span>
+                </div>
+                <div class="metric-card" id="metric-rotation">
+                  <span class="metric-label">肩回旋</span>
+                  <span class="metric-value" id="val-rotation">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-rotation"></div></div>
+                  <span class="metric-hint">上半身のひねり具合</span>
+                </div>
+                <div class="metric-card" id="metric-hip">
+                  <span class="metric-label">股関節角度</span>
+                  <span class="metric-value" id="val-hip">--°</span>
+                  <div class="metric-bar"><div class="metric-bar-fill" id="bar-hip"></div></div>
+                  <span class="metric-hint">下半身の安定性指標</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ステータス表示 -->
+            <div class="status-bar" id="status-bar">
+              <span id="status-text">待機中 — カメラまたは動画を選択してください</span>
+              <span id="fps-display"></span>
+            </div>
+          </section>
+
+          <!-- 数値指標の説明 -->
+          <section id="metrics" class="section">
+            <h2 class="section-title">数値指標の解説</h2>
+            <p>
+              テニスのスイングで重要な6つの指標を検出・計算しています。
+              各指標の意味と理想的な値の目安を確認しましょう。
+            </p>
+            <div class="info-grid">
+              <div class="info-card">
+                <h3>肘角度</h3>
+                <p>肩・肘・手首の3点から計算。インパクト時は140°〜170°が理想。腕が十分に伸びているかを確認できます。</p>
+              </div>
+              <div class="info-card">
+                <h3>肩角度</h3>
+                <p>腰・肩・肘の3点から計算。サーブのトロフィーポジションでは90°前後が目安です。</p>
+              </div>
+              <div class="info-card">
+                <h3>膝角度</h3>
+                <p>腰・膝・足首の3点から計算。タメの段階では110°〜140°程度。深く曲げることでパワーを生み出します。</p>
+              </div>
+              <div class="info-card">
+                <h3>体幹傾斜</h3>
+                <p>肩と腰の中点を結ぶ線と垂直線の角度。サーブ時は15°〜25°の前傾が一般的です。</p>
+              </div>
+              <div class="info-card">
+                <h3>肩回旋</h3>
+                <p>左右の肩を結ぶラインの水平角度。テイクバック時に大きくひねることでパワーが増します。</p>
+              </div>
+              <div class="info-card">
+                <h3>股関節角度</h3>
+                <p>肩・腰・膝の3点から計算。安定したフットワークの維持に重要な指標です。</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 使い方ガイド -->
+          <section id="guide" class="section">
+            <h2 class="section-title">使い方ガイド</h2>
+            <p>
+              このツールはブラウザ上でAI骨格検出を行います。データはすべてローカルで処理され、サーバーには送信されません。
+            </p>
+            <div class="info-grid">
+              <div class="info-card">
+                <h3>1. 入力を選択</h3>
+                <p>「カメラで分析」でリアルタイム分析、または「動画をアップロード」で録画済み映像を分析できます。</p>
+              </div>
+              <div class="info-card">
+                <h3>2. 骨格を確認</h3>
+                <p>映像の上に緑色の骨格がオーバーレイ表示されます。関節点と骨が見えれば検出成功です。</p>
+              </div>
+              <div class="info-card">
+                <h3>3. 数値を読み取る</h3>
+                <p>右側パネルにリアルタイムで角度が表示されます。バーの色で直感的に値の範囲がわかります。</p>
+              </div>
+            </div>
+            <div class="callout">
+              <strong>ヒント:</strong> 全身が映るように撮影すると、より正確な骨格検出が可能です。明るい場所で、背景とコントラストのある服装がおすすめです。
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <strong>Sample Web Hub</strong>
+        <small>Tennis Swing Analysis &copy; 2024</small>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
