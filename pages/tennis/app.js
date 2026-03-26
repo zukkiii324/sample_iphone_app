@@ -690,10 +690,14 @@
     tmpCtx.drawImage(video, 0, 0);
     tmpCtx.drawImage(canvas, 0, 0);
 
+    /* ダウンロードリンクをDOMに追加してからクリック（ブラウザ互換性対策） */
     var link = document.createElement("a");
     link.download = "swing-analysis-" + new Date().toISOString().slice(0, 19) + ".png";
     link.href = tmpCanvas.toDataURL("image/png");
+    link.style.display = "none";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   }
 
   /* ── イベントリスナー ── */
