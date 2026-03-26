@@ -1,5 +1,6 @@
 /* ============================================
-   テニススイング分析 — Webアプリ風スタイル
+   テニススイング分析 v2.0 — Webアプリ風スタイル
+   BlazePose対応・スロー再生機能付き
    ============================================ */
 
 /* --- CSS変数 --- */
@@ -303,8 +304,172 @@ body {
   max-width: 300px;
 }
 
+.placeholder-model {
+  font-size: 0.72rem;
+  color: rgba(132, 204, 22, 0.4);
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
 .placeholder.hidden {
   display: none;
+}
+
+/* ============================================
+   再生コントロールバー
+   ============================================ */
+
+.playback-bar {
+  background: var(--app-surface);
+  border-top: 1px solid var(--app-border);
+  padding: 0.5rem 1rem;
+  flex-shrink: 0;
+}
+
+.playback-bar.hidden {
+  display: none;
+}
+
+.playback-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 再生制御ボタン */
+.playback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--app-radius-sm);
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.playback-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--app-text);
+}
+
+.playback-btn svg {
+  flex-shrink: 0;
+}
+
+/* 時間表示 */
+.playback-time {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--app-text-muted);
+  white-space: nowrap;
+  min-width: 80px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* シークバー */
+.seek-bar-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.seek-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+
+.seek-bar:hover {
+  height: 6px;
+}
+
+.seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--app-accent);
+  border: 2px solid var(--app-bg);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(132, 204, 22, 0.3);
+  transition: transform 0.1s ease;
+}
+
+.seek-bar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.seek-bar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--app-accent);
+  border: 2px solid var(--app-bg);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(132, 204, 22, 0.3);
+}
+
+.seek-bar::-webkit-slider-runnable-track {
+  border-radius: 2px;
+}
+
+.seek-bar::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 速度選択グループ */
+.speed-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--app-radius-sm);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.speed-btn {
+  padding: 0.25rem 0.45rem;
+  border: none;
+  background: transparent;
+  color: var(--app-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.speed-btn:hover {
+  color: var(--app-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.speed-btn.active {
+  background: var(--app-accent-dim);
+  color: var(--app-accent);
+}
+
+/* SVG表示/非表示用 */
+.hidden {
+  display: none !important;
 }
 
 /* --- メトリクスサイドバー --- */
@@ -571,6 +736,21 @@ body {
   .guide-item {
     flex: 1 1 100%;
   }
+
+  /* 再生バーを横幅いっぱいに */
+  .playback-row {
+    flex-wrap: wrap;
+  }
+
+  .seek-bar-wrap {
+    order: 10;
+    flex-basis: 100%;
+    margin-top: 0.3rem;
+  }
+
+  .speed-group {
+    order: 9;
+  }
 }
 
 /* スマホ（720px以下） */
@@ -608,6 +788,24 @@ body {
 
   .guide-item {
     padding: 0.5rem 0.3rem;
+  }
+
+  .playback-bar {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .playback-row {
+    gap: 0.3rem;
+  }
+
+  .speed-btn {
+    font-size: 0.62rem;
+    padding: 0.2rem 0.35rem;
+  }
+
+  .playback-time {
+    font-size: 0.65rem;
+    min-width: 70px;
   }
 }
 
@@ -653,6 +851,16 @@ body {
 
   .tab-content {
     padding: 0 0.5rem 0.5rem;
+  }
+
+  .playback-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .playback-btn svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
