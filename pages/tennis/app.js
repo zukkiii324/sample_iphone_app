@@ -15,7 +15,26 @@
   const btnStop = document.getElementById("btn-stop");
   const videoUpload = document.getElementById("video-upload");
   const statusText = document.getElementById("status-text");
+  const statusDot = document.querySelector(".status-dot");
   const fpsDisplay = document.getElementById("fps-display");
+
+  /* ── タブ切り替え ── */
+  const tabs = document.querySelectorAll(".panel-tab");
+  const tabContents = {
+    metrics: document.getElementById("tab-metrics"),
+    guide: document.getElementById("tab-guide"),
+  };
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.classList.remove("active"); });
+      tab.classList.add("active");
+      var target = tab.getAttribute("data-tab");
+      Object.keys(tabContents).forEach(function (key) {
+        tabContents[key].classList.toggle("active", key === target);
+      });
+    });
+  });
 
   /* ── MoveNet キーポイントのインデックス定義 ── */
   const KP = {
@@ -85,21 +104,27 @@
     return kp && kp.score >= MIN_CONFIDENCE;
   }
 
+  /* ── ステータス表示の更新 ── */
+  function setStatus(text, active) {
+    statusText.textContent = text;
+    statusDot.classList.toggle("active", !!active);
+  }
+
   /* ── モデルの初期化 ── */
   async function initDetector() {
-    statusText.textContent = "モデルを読み込み中…";
+    setStatus("モデルを読み込み中…", false);
     const model = poseDetection.SupportedModels.MoveNet;
     detector = await poseDetection.createDetector(model, {
       modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING,
     });
-    statusText.textContent = "モデル準備完了";
+    setStatus("モデル準備完了", false);
   }
 
   /* ── カメラ起動 ── */
   async function startCamera() {
     try {
       stopAll();
-      statusText.textContent = "カメラを起動中…";
+      setStatus("カメラを起動中…", false);
       stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment", width: 640, height: 480 },
         audio: false,
@@ -112,17 +137,18 @@
       btnStop.disabled = false;
 
       if (!detector) await initDetector();
-      statusText.textContent = "分析中（カメラ）";
+      setStatus("分析中", true);
+      fpsDisplay.classList.add("visible");
       detectLoop();
     } catch (err) {
-      statusText.textContent = "カメラの起動に失敗しました: " + err.message;
+      setStatus("カメラ起動失敗: " + err.message, false);
     }
   }
 
   /* ── 動画アップロード ── */
   async function loadVideo(file) {
     stopAll();
-    statusText.textContent = "動画を読み込み中…";
+    setStatus("動画を読み込み中…", false);
     const url = URL.createObjectURL(file);
     video.srcObject = null;
     video.src = url;
@@ -134,7 +160,8 @@
     btnStop.disabled = false;
 
     if (!detector) await initDetector();
-    statusText.textContent = "分析中（動画）";
+    setStatus("分析中", true);
+    fpsDisplay.classList.add("visible");
     detectLoop();
   }
 
@@ -201,7 +228,7 @@
       /* 内側の円（アクセントカラー） */
       ctx.beginPath();
       ctx.arc(kp.x, kp.y, 4, 0, 2 * Math.PI);
-      ctx.fillStyle = "#65a30d";
+      ctx.fillStyle = "#84cc16";
       ctx.fill();
     }
 
@@ -320,7 +347,7 @@
       } else if (pct > 85) {
         barEl.style.backgroundColor = "#ef4444";
       } else {
-        barEl.style.backgroundColor = "#65a30d";
+        barEl.style.backgroundColor = "#84cc16";
       }
     }
   }
@@ -345,7 +372,8 @@
     btnSnapshot.disabled = true;
     btnStop.disabled = true;
     fpsDisplay.textContent = "";
-    statusText.textContent = "停止しました";
+    fpsDisplay.classList.remove("visible");
+    setStatus("待機中", false);
     resetMetrics();
   }
 
@@ -358,7 +386,7 @@
       if (valEl) valEl.textContent = "--°";
       if (barEl) {
         barEl.style.width = "0%";
-        barEl.style.backgroundColor = "var(--color-accent)";
+        barEl.style.backgroundColor = "var(--app-accent)";
       }
     });
   }
