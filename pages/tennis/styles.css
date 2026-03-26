@@ -715,7 +715,11 @@ body {
 
   .app-shell {
     flex-direction: column;
-    min-height: calc(100vh - 48px);
+    min-height: auto;
+  }
+
+  .app-main {
+    flex: none;
   }
 
   .metrics-sidebar {
