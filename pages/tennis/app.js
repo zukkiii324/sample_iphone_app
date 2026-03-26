@@ -177,7 +177,7 @@
   let fps = 0;
   let isVideoMode = false;
   let isPlaying = false;
-  let currentSpeed = 1;
+  let currentSpeed = 0.25;
   let isSeeking = false;
   const MIN_CONFIDENCE = 0.3;
   const FRAME_STEP = 1 / 30; /* コマ送り間隔（約30fps想定） */
@@ -747,8 +747,188 @@
     updatePlayPauseIcon();
   });
 
+  /* ── 全画面表示機能 ── */
+  var fullscreenOverlay = document.getElementById("fullscreen-overlay");
+  var fullscreenVideo = document.getElementById("fullscreen-video");
+  var fullscreenCanvas = document.getElementById("fullscreen-canvas");
+  var btnFullscreen = document.getElementById("btn-fullscreen");
+  var btnFullscreenClose = document.getElementById("btn-fullscreen-close");
+  var isFullscreen = false;
+
+  /* 全画面を開く */
+  function openFullscreen() {
+    if (!video.src && !video.srcObject) return;
+    isFullscreen = true;
+    fullscreenOverlay.classList.remove("hidden");
+
+    /* メイン映像のソースを全画面用にも設定 */
+    if (video.srcObject) {
+      fullscreenVideo.srcObject = video.srcObject;
+    } else {
+      fullscreenVideo.src = video.src;
+      fullscreenVideo.currentTime = video.currentTime;
+    }
+    fullscreenVideo.playbackRate = video.playbackRate;
+    fullscreenVideo.muted = true;
+    if (!video.paused) {
+      fullscreenVideo.play();
+    }
+
+    /* 全画面用canvasのサイズを同期 */
+    syncFullscreenCanvas();
+  }
+
+  /* 全画面を閉じる */
+  function closeFullscreen() {
+    isFullscreen = false;
+    fullscreenOverlay.classList.add("hidden");
+
+    /* メイン映像の時間を全画面側と同期 */
+    if (!video.srcObject && fullscreenVideo.src) {
+      video.currentTime = fullscreenVideo.currentTime;
+    }
+
+    fullscreenVideo.pause();
+    fullscreenVideo.srcObject = null;
+    fullscreenVideo.src = "";
+  }
+
+  /* 全画面用canvasの位置・サイズを映像に合わせる */
+  function syncFullscreenCanvas() {
+    if (!isFullscreen) return;
+    var containerW = fullscreenOverlay.clientWidth;
+    var containerH = fullscreenOverlay.clientHeight;
+    var videoW = fullscreenVideo.videoWidth || video.videoWidth;
+    var videoH = fullscreenVideo.videoHeight || video.videoHeight;
+    if (!videoW || !videoH) return;
+    var scale = Math.min(containerW / videoW, containerH / videoH);
+    var displayW = videoW * scale;
+    var displayH = videoH * scale;
+    var offsetX = (containerW - displayW) / 2;
+    var offsetY = (containerH - displayH) / 2;
+    fullscreenCanvas.style.left = offsetX + "px";
+    fullscreenCanvas.style.top = offsetY + "px";
+    fullscreenCanvas.style.width = displayW + "px";
+    fullscreenCanvas.style.height = displayH + "px";
+  }
+
+  /* 検出ループ内でスケルトンを全画面canvasにもコピーする */
+  var origSyncCanvasPosition = syncCanvasPosition;
+  syncCanvasPosition = function () {
+    origSyncCanvasPosition();
+    if (isFullscreen) {
+      fullscreenCanvas.width = canvas.width;
+      fullscreenCanvas.height = canvas.height;
+      var fsCtx = fullscreenCanvas.getContext("2d");
+      fsCtx.clearRect(0, 0, fullscreenCanvas.width, fullscreenCanvas.height);
+      fsCtx.drawImage(canvas, 0, 0);
+      syncFullscreenCanvas();
+    }
+  };
+
+  btnFullscreen.addEventListener("click", openFullscreen);
+  btnFullscreenClose.addEventListener("click", closeFullscreen);
+
+  /* ── メトリクス解説モーダル ── */
+  var modalOverlay = document.getElementById("metric-modal-overlay");
+  var modalTitle = document.getElementById("modal-title");
+  var modalDescription = document.getElementById("modal-description");
+  var modalBenchmark = document.getElementById("modal-benchmark");
+  var modalAdvice = document.getElementById("modal-advice");
+  var modalCloseBtn = document.getElementById("modal-close");
+
+  /* 各メトリクスの解説データ */
+  var metricDetails = {
+    elbow: {
+      title: "肘角度",
+      description: "ラケット側の腕の肘の角度を測定します。肩・肘・手首の3点から算出され、腕の伸展度を示します。インパクト時に肘が適度に伸びていると、ボールに効率よく力を伝えることができます。",
+      benchmark: "インパクト時: 140°〜170° が理想的です。テイクバック時は90°〜120°程度まで曲がるのが自然です。サーブでは、トロフィーポジションで約90°、インパクトで160°以上に伸展するのが効果的です。",
+      advice: "肘が伸びきらない場合は、テイクバックからフォワードスイングへの切り替えタイミングを見直しましょう。また、グリップを握り込みすぎると肘が硬くなりやすいので、リラックスした状態でスイングを始めることを意識してください。"
+    },
+    shoulder: {
+      title: "肩角度",
+      description: "体幹（腰）から肩、肘にかけての角度を測定します。腕の振り上げの高さやスイングの大きさを示す重要な指標です。大きなスイングを生み出すためには、肩の可動域を十分に活用することが大切です。",
+      benchmark: "トロフィーポジション（サーブ）: 約90°前後。フォアハンドのテイクバック: 60°〜90°。インパクト時: 90°〜120°。",
+      advice: "肩角度が小さすぎる場合はスイングが小さくなり、パワーが不足します。テイクバック時に肩をしっかり回して腕を引くことを意識しましょう。ただし、無理に上げすぎると故障のリスクがあるので、ウォーミングアップを十分に行ってください。"
+    },
+    knee: {
+      title: "膝角度",
+      description: "腰・膝・足首の3点から算出される膝の曲がり具合を示します。テニスでは下半身のタメ（パワーの蓄積）を表す重要な指標で、スイング時に膝を適切に曲げることで、地面からの力を上半身に伝えることができます。",
+      benchmark: "タメ時（打球準備）: 110°〜140°。スプリットステップ時: 120°〜150°。インパクト時は徐々に伸びていくのが理想的です。",
+      advice: "膝が棒立ちのまま（170°以上）スイングしている場合、下半身の力を活用できていません。打球前に軽く膝を曲げてタメを作り、打球と同時に地面を蹴り上げるイメージで打つと、自然とパワーが増します。日常的にスクワットで下半身を鍛えるのも効果的です。"
+    },
+    trunk: {
+      title: "体幹傾斜",
+      description: "両肩の中点と両腰の中点を結んだ線の垂直方向からの傾きを測定します。0°が完全な直立状態で、値が大きいほど体が傾いていることを示します。適度な前傾はスイングに必要ですが、傾きすぎるとバランスが崩れます。",
+      benchmark: "サーブ時: 15°〜25°（後方への反り）。ストローク時: 5°〜15°。ボレー時: 5°〜10°程度が安定した姿勢です。",
+      advice: "体幹傾斜が大きすぎる場合は、打球時にバランスを崩しやすくなります。体幹（コア）の筋力トレーニング（プランクなど）を取り入れて安定した姿勢を保てるようにしましょう。また、打球後の姿勢リカバリーも意識してください。"
+    },
+    rotation: {
+      title: "肩回旋",
+      description: "左右の肩のラインが水平からどの程度回転しているかを測定します。テニスではテイクバック時に上半身をひねることで、回転力をスイングに変換します。この値が大きいほど、上半身のひねりが深いことを示します。",
+      benchmark: "テイクバック時: 大きいほど良い（30°〜60°以上）。サーブのトロフィーポジション時は肩のラインがネットに対してほぼ直角になるのが理想的です。",
+      advice: "肩回旋が不十分な場合は、手打ちになっている可能性があります。テイクバック時に非利き手でラケットを支え、体をしっかりひねることを意識しましょう。腰→肩→腕の順に回転する「運動連鎖」を意識すると、自然に回旋が深くなります。"
+    },
+    hip: {
+      title: "股関節",
+      description: "肩・腰・膝の3点から算出される股関節の角度です。下半身の安定性やフットワークの質を示す指標で、適切な股関節の角度は素早い方向転換やパワーの伝達に必要不可欠です。",
+      benchmark: "レディーポジション: 140°〜160°。ランジ動作時: 90°〜130°。安定したフットワーク時は左右対称に近い値になるのが理想的です。",
+      advice: "股関節が硬いとフットワークが遅くなり、体重移動がスムーズにできません。ストレッチ（股関節回し、ランジストレッチ）を日常的に行い、可動域を広げましょう。打球時は重心を低く保ち、股関節から動くイメージを持つとフットワークが改善されます。"
+    },
+    wrist: {
+      title: "手首角度",
+      description: "肘・手首・人差し指の3点から算出される手首の角度です。ラケット操作やスナップの効き具合を示します。手首の使い方はスピンやスライスなどショットのバリエーションに直結する重要な要素です。",
+      benchmark: "スナップ時: 150°〜170°。テイクバック時は手首を背屈（コック）させて90°〜120°程度にするのが効果的です。",
+      advice: "手首が固定されすぎている場合は、ラケットヘッドスピードが出にくくなります。打球前に手首を軽くコック（背屈）し、インパクト直前に返す動きを練習しましょう。ただし、手首の過度な使用は故障の原因になるので、まずは体幹と腕全体のスイングを固めてから手首の微調整を加えることをおすすめします。"
+    },
+    ankle: {
+      title: "足首角度",
+      description: "膝・足首・つま先の3点から算出される足首の角度です。踏み込みの安定性や地面をしっかり捉えているかを示します。適切な足首の角度は、スプリットステップやダッシュ時の推進力に影響します。",
+      benchmark: "踏み込み時: 80°〜100°。スプリットステップ時: 90°〜110°。過度な背屈（80°未満）はアキレス腱への負担が増します。",
+      advice: "足首が硬い場合は、つま先立ちやカーフレイズで柔軟性と筋力を高めましょう。打球時はかかとではなくつま先側（拇指球）で地面を捉えるように意識すると、素早い反応と安定した踏み込みが可能になります。テーピングやサポーターで足首を保護することも有効です。"
+    }
+  };
+
+  /* メトリクスカードのクリックイベント */
+  var metricCards = document.querySelectorAll(".metric-card");
+  metricCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      var id = card.id.replace("metric-", "");
+      var detail = metricDetails[id];
+      if (!detail) return;
+
+      modalTitle.textContent = detail.title;
+      modalDescription.textContent = detail.description;
+      modalBenchmark.textContent = detail.benchmark;
+      modalAdvice.textContent = detail.advice;
+      modalOverlay.classList.remove("hidden");
+    });
+  });
+
+  /* モーダルを閉じる */
+  function closeModal() {
+    modalOverlay.classList.add("hidden");
+  }
+
+  modalCloseBtn.addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", function (e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+
   /* キーボードショートカット */
   document.addEventListener("keydown", function (e) {
+    /* Escape でモーダル・全画面を閉じる */
+    if (e.key === "Escape") {
+      if (!modalOverlay.classList.contains("hidden")) {
+        closeModal();
+        return;
+      }
+      if (isFullscreen) {
+        closeFullscreen();
+        return;
+      }
+    }
+
     if (!isVideoMode) return;
 
     switch (e.key) {
@@ -775,6 +955,10 @@
         break;
       case "4":
         setSpeed(1);
+        break;
+      case "f":
+        if (!isFullscreen) openFullscreen();
+        else closeFullscreen();
         break;
     }
   });

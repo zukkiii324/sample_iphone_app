@@ -919,6 +919,154 @@ body {
   }
 }
 
+/* ============================================
+   全画面オーバーレイ
+   ============================================ */
+
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-overlay.hidden {
+  display: none;
+}
+
+.fullscreen-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fullscreen-overlay canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.fullscreen-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 101;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.fullscreen-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   メトリクス解説モーダル
+   ============================================ */
+
+.metric-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.metric-modal-overlay.hidden {
+  display: none;
+}
+
+.metric-modal {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  max-width: 480px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.metric-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.metric-modal-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--app-accent);
+}
+
+.metric-modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--app-radius-sm);
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.metric-modal-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--app-text);
+}
+
+.metric-modal-body {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-section h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--app-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.modal-section p {
+  font-size: 0.85rem;
+  color: var(--app-text);
+  line-height: 1.65;
+}
+
+/* メトリクスカードをクリック可能にする */
+.metric-card {
+  cursor: pointer;
+}
+
+.metric-card:hover {
+  border-color: var(--app-accent);
+  background: rgba(132, 204, 22, 0.04);
+}
+
 /* モーション軽減設定 */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
