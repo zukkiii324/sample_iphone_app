@@ -1,0 +1,69 @@
+/* 防災リサーチ — テーマカラー: オレンジ #ea580c */
+body.disaster-prevention {
+  --color-accent: #ea580c;
+  --color-accent-soft: rgba(234, 88, 12, 0.12);
+  --color-accent-contrast: #ffffff;
+}
+
+body.disaster-prevention .category-hero {
+  background: linear-gradient(140deg, rgba(234, 88, 12, 0.18), rgba(251, 191, 36, 0.12));
+}
+
+body.disaster-prevention .info-card {
+  border-color: rgba(234, 88, 12, 0.2);
+}
+
+body.disaster-prevention .callout {
+  background: rgba(234, 88, 12, 0.08);
+  border-color: rgba(234, 88, 12, 0.28);
+}
+
+/* 更新日バッジ */
+.update-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  background: var(--color-accent-soft);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.update-badge::before {
+  content: "🔄";
+}
+
+/* トピックカード */
+.topic-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.topic-card:hover {
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08));
+}
+
+.topic-card h4 {
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: 1.05rem;
+}
+
+.topic-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.topic-card .source {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
