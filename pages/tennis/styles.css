@@ -795,11 +795,25 @@ body {
   }
 
   #tab-metrics.active {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.25rem;
   }
 
   .metric-card {
     flex: 1 1 100%;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .metric-label {
+    font-size: 0.68rem;
+  }
+
+  .metric-value {
+    font-size: 0.9rem;
+  }
+
+  .metric-hint {
+    font-size: 0.58rem;
   }
 
   .guide-item {
@@ -857,8 +871,29 @@ body {
     width: 100%;
   }
 
+  #tab-metrics.active {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.2rem;
+  }
+
+  .metric-card {
+    padding: 0.25rem 0.35rem;
+  }
+
+  .metric-label {
+    font-size: 0.62rem;
+  }
+
   .metric-value {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+  }
+
+  .metric-hint {
+    font-size: 0.55rem;
+  }
+
+  .metric-bar {
+    height: 3px;
   }
 
   .panel-header {
@@ -866,7 +901,7 @@ body {
   }
 
   .tab-content {
-    padding: 0 0.5rem 0.5rem;
+    padding: 0 0.4rem 0.4rem;
   }
 
   .playback-btn {
