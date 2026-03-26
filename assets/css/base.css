@@ -264,6 +264,61 @@ main {
   flex: 1;
 }
 
+/* --- プロジェクトカード（トップページ MVP 表示用） --- */
+.project-grid {
+  display: grid;
+  gap: 1.8rem;
+  margin-top: 2.2rem;
+}
+
+.card-project {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 2.4rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-project:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.card-body p {
+  margin: 0;
+  color: var(--color-muted);
+  flex: 1;
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -493,6 +548,22 @@ pre {
     padding: 1.5rem;
   }
 
+  .card-project {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .card-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .card-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
   .info-card {
     padding: 1.2rem;
   }
@@ -614,6 +685,14 @@ pre {
 
   .card h3 {
     font-size: 1.15rem;
+  }
+
+  .card-project {
+    padding: 1.2rem;
+  }
+
+  .card-body h3 {
+    font-size: 1.2rem;
   }
 
   .info-card {
