@@ -8,9 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- TensorFlow.js と MoveNet モデル -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <!-- TensorFlow.js と BlazePose（MediaPipe）モデル -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.22.0/dist/tf-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.22.0/dist/tf-backend-webgl.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404/pose.min.js"></script>
   </head>
   <body>
     <!-- アプリバー -->
@@ -24,7 +26,7 @@
           </svg>
           <span>Swing Analyzer</span>
         </div>
-        <span class="app-version">v1.0</span>
+        <span class="app-version">v2.0</span>
       </div>
       <div class="app-bar-right">
         <span class="status-indicator" id="status-indicator">
@@ -101,6 +103,50 @@
             </div>
             <p class="placeholder-title">分析を開始</p>
             <p class="placeholder-sub">「カメラ」または「動画」を選択してスイング分析を始めましょう</p>
+            <p class="placeholder-model">BlazePose FULL — 33キーポイント高精度検出</p>
+          </div>
+        </div>
+
+        <!-- 再生コントロールバー（動画モード時に表示） -->
+        <div class="playback-bar hidden" id="playback-bar">
+          <div class="playback-row">
+            <!-- コマ戻し -->
+            <button class="playback-btn" id="btn-frame-back" type="button" aria-label="コマ戻し">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polygon points="19 20 9 12 19 4"/>
+                <line x1="5" y1="4" x2="5" y2="20"/>
+              </svg>
+            </button>
+            <!-- 再生/一時停止 -->
+            <button class="playback-btn" id="btn-play-pause" type="button" aria-label="再生/一時停止">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" id="icon-play">
+                <polygon points="5 3 19 12 5 21"/>
+              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" id="icon-pause" class="hidden">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+              </svg>
+            </button>
+            <!-- コマ送り -->
+            <button class="playback-btn" id="btn-frame-forward" type="button" aria-label="コマ送り">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polygon points="5 4 15 12 5 20"/>
+                <line x1="19" y1="4" x2="19" y2="20"/>
+              </svg>
+            </button>
+            <!-- 時間表示 -->
+            <span class="playback-time" id="playback-time">0:00 / 0:00</span>
+            <!-- シークバー -->
+            <div class="seek-bar-wrap">
+              <input type="range" class="seek-bar" id="seek-bar" min="0" max="1000" value="0" step="1" />
+            </div>
+            <!-- 速度選択 -->
+            <div class="speed-group">
+              <button class="speed-btn" data-speed="0.25" type="button">0.25x</button>
+              <button class="speed-btn" data-speed="0.5" type="button">0.5x</button>
+              <button class="speed-btn" data-speed="0.75" type="button">0.75x</button>
+              <button class="speed-btn active" data-speed="1" type="button">1x</button>
+            </div>
           </div>
         </div>
       </div>
@@ -166,6 +212,22 @@
             <div class="metric-bar"><div class="metric-bar-fill" id="bar-hip"></div></div>
             <span class="metric-hint">下半身の安定性</span>
           </div>
+          <div class="metric-card" id="metric-wrist">
+            <div class="metric-top">
+              <span class="metric-label">手首角度</span>
+              <span class="metric-value" id="val-wrist">--°</span>
+            </div>
+            <div class="metric-bar"><div class="metric-bar-fill" id="bar-wrist"></div></div>
+            <span class="metric-hint">スナップの効き具合</span>
+          </div>
+          <div class="metric-card" id="metric-ankle">
+            <div class="metric-top">
+              <span class="metric-label">足首角度</span>
+              <span class="metric-value" id="val-ankle">--°</span>
+            </div>
+            <div class="metric-bar"><div class="metric-bar-fill" id="bar-ankle"></div></div>
+            <span class="metric-hint">踏み込みの安定性</span>
+          </div>
         </div>
 
         <!-- ガイドタブ -->
@@ -181,14 +243,14 @@
             <div class="guide-step">2</div>
             <div>
               <strong>骨格を確認</strong>
-              <p>映像上に緑色の骨格がオーバーレイ表示されます</p>
+              <p>BlazePose が33箇所の関節を高精度で検出し、映像上にオーバーレイ表示します</p>
             </div>
           </div>
           <div class="guide-item">
             <div class="guide-step">3</div>
             <div>
-              <strong>数値を読む</strong>
-              <p>右パネルでリアルタイムに角度データを確認できます</p>
+              <strong>スロー再生で分析</strong>
+              <p>動画モードでは速度変更（0.25x〜1x）やコマ送りで細かく確認できます</p>
             </div>
           </div>
           <div class="guide-tip">
@@ -208,6 +270,8 @@
               <tr><td>体幹傾斜</td><td>サーブ時 15°〜25°</td></tr>
               <tr><td>肩回旋</td><td>テイクバック時に大きいほど◎</td></tr>
               <tr><td>股関節</td><td>安定したフットワークの指標</td></tr>
+              <tr><td>手首角度</td><td>スナップ時 150°〜170°</td></tr>
+              <tr><td>足首角度</td><td>踏み込み時 80°〜100°</td></tr>
             </table>
           </div>
         </div>
