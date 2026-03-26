@@ -143,6 +143,56 @@ body.lifestyle .hero-meta {
   margin-right: 0.4rem;
 }
 
+/* 育児ミニマリスト記事セクション */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+}
+
+.article-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.article-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.article-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.article-card__meta time {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.article-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.article-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
 @media (max-width: 720px) {
   .comparison-table {
     min-width: 580px;
@@ -165,6 +215,14 @@ body.lifestyle .hero-meta {
 
   .tip-grid {
     grid-template-columns: 1fr;
+  }
+
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-card {
+    padding: 1.3rem;
   }
 
   .table-scroll {
@@ -203,5 +261,17 @@ body.lifestyle .hero-meta {
   .feature-list {
     font-size: 0.9rem;
     padding-left: 1rem;
+  }
+
+  .article-card {
+    padding: 1.2rem;
+  }
+
+  .article-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .article-card p {
+    font-size: 0.88rem;
   }
 }
