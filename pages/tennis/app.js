@@ -206,6 +206,32 @@
     return kp && kp.score >= MIN_CONFIDENCE;
   }
 
+  /* ── ユーティリティ: object-fit: contain による映像の実際の描画領域を計算 ── */
+  function getVideoFitRect() {
+    var containerW = video.clientWidth;
+    var containerH = video.clientHeight;
+    var videoW = video.videoWidth;
+    var videoH = video.videoHeight;
+    if (!videoW || !videoH) return null;
+    var scale = Math.min(containerW / videoW, containerH / videoH);
+    var displayW = videoW * scale;
+    var displayH = videoH * scale;
+    var offsetX = (containerW - displayW) / 2;
+    var offsetY = (containerH - displayH) / 2;
+    return { offsetX: offsetX, offsetY: offsetY, displayW: displayW, displayH: displayH };
+  }
+
+  /* ── canvasの位置・サイズを映像の描画領域に合わせる ── */
+  function syncCanvasPosition() {
+    var rect = getVideoFitRect();
+    if (rect) {
+      canvas.style.left = rect.offsetX + "px";
+      canvas.style.top = rect.offsetY + "px";
+      canvas.style.width = rect.displayW + "px";
+      canvas.style.height = rect.displayH + "px";
+    }
+  }
+
   /* ── キーポイント平滑化 ── */
   function smoothKeypoints(keypoints) {
     if (!prevKeypoints) {
@@ -327,6 +353,7 @@
         /* Canvas サイズを映像に合わせる */
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
+        syncCanvasPosition();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         try {
@@ -670,6 +697,9 @@
   }
 
   /* ── イベントリスナー ── */
+  /* ── ウィンドウリサイズ時にcanvas位置を再計算 ── */
+  window.addEventListener("resize", syncCanvasPosition);
+
   btnCamera.addEventListener("click", startCamera);
 
   videoUpload.addEventListener("change", function () {
