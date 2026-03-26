@@ -227,4 +227,47 @@ body.tennis .callout {
   .metric-card {
     flex: 1 1 100%;
   }
+
+  .metrics-panel {
+    padding: 1rem;
+  }
+
+  .status-bar {
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-panel .button {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .video-container {
+    aspect-ratio: 3 / 2;
+  }
+
+  .metric-value {
+    font-size: 1.3rem;
+  }
+
+  .metric-label {
+    font-size: 0.78rem;
+  }
+
+  .metrics-panel {
+    padding: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .metric-card {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .status-bar {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
 }
