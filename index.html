@@ -43,7 +43,9 @@
           <h2 class="section-title">プロジェクト</h2>
           <div class="project-grid">
 
-            <a href="pages/tennis/index.html" class="card card-project" style="--card-accent: #84cc16">
+            <!-- テニススイング分析 -->
+            <button class="card card-project" style="--card-accent: #84cc16"
+                    onclick="document.getElementById('modal-tennis').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="24" cy="24" r="10" />
@@ -54,19 +56,19 @@
               </div>
               <div class="card-body">
                 <h3>テニススイング分析</h3>
-                <p>
-                  AIによる骨格検出でテニスのスイングフォームをリアルタイムに分析。関節角度や体幹の傾きを可視化し、フォーム改善をサポートします。
-                </p>
+                <p>AIによる骨格検出でスイングフォームをリアルタイムに分析します。</p>
                 <ul class="tag-list">
                   <li>AI・骨格検出</li>
                   <li>リアルタイム分析</li>
                   <li>角度計測</li>
                 </ul>
-                <span class="card-link">分析ツールを開く →</span>
+                <span class="card-link">詳しく見る →</span>
               </div>
-            </a>
+            </button>
 
-            <a href="pages/lifestyle/index.html" class="card card-project" style="--card-accent: #7c3aed">
+            <!-- Nuna ベビーカー比較ガイド -->
+            <button class="card card-project" style="--card-accent: #7c3aed"
+                    onclick="document.getElementById('modal-lifestyle').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="16" cy="38" r="4" />
@@ -79,19 +81,19 @@
               </div>
               <div class="card-body">
                 <h3>Nuna ベビーカー比較ガイド</h3>
-                <p>
-                  Nuna の現行ベビーカーモデルをスペック・用途別に比較。重量や折りたたみサイズ、対象月齢など、育児グッズ選びに必要な情報をまとめています。
-                </p>
+                <p>Nuna のベビーカーモデルをスペック・用途別に比較できます。</p>
                 <ul class="tag-list">
                   <li>スペック比較</li>
                   <li>育児グッズ</li>
                   <li>ベビーカー</li>
                 </ul>
-                <span class="card-link">比較ガイドを見る →</span>
+                <span class="card-link">詳しく見る →</span>
               </div>
-            </a>
+            </button>
 
-            <a href="pages/disaster-prevention/index.html" class="card card-project" style="--card-accent: #ea580c">
+            <!-- 防災DXリサーチ -->
+            <button class="card card-project" style="--card-accent: #ea580c"
+                    onclick="document.getElementById('modal-disaster').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M24 4 L6 14 L6 28 C6 38 14 46 24 48 C34 46 42 38 42 28 L42 14 Z" />
@@ -100,19 +102,19 @@
               </div>
               <div class="card-body">
                 <h3>防災DXリサーチ</h3>
-                <p>
-                  防災DXに関する国の政策・制度、民間企業の取り組み、注目テーマを週次で更新するリサーチレポートです。
-                </p>
+                <p>防災DXに関する政策・制度と民間の取り組みを週次で更新しています。</p>
                 <ul class="tag-list">
                   <li>週次更新</li>
                   <li>政策・制度</li>
                   <li>防災テック</li>
                 </ul>
-                <span class="card-link">リサーチを読む →</span>
+                <span class="card-link">詳しく見る →</span>
               </div>
-            </a>
+            </button>
 
-            <a href="pages/parenting/index.html" class="card card-project" style="--card-accent: #e11d48">
+            <!-- 育児防災チェックリスト -->
+            <button class="card card-project" style="--card-accent: #e11d48"
+                    onclick="document.getElementById('modal-parenting').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M24 4 C14 4 8 12 8 20 C8 30 24 44 24 44 C24 44 40 30 40 20 C40 12 34 4 24 4Z" />
@@ -121,22 +123,183 @@
               </div>
               <div class="card-body">
                 <h3>育児防災チェックリスト</h3>
-                <p>
-                  乳幼児のいるご家庭向けの防災備蓄チェックリスト。厚生労働省の推奨をベースに、URLで家族と共有でき、カスタマイズも可能です。
-                </p>
+                <p>乳幼児のいるご家庭向けの防災備蓄チェックリストです。</p>
                 <ul class="tag-list">
                   <li>防災備蓄</li>
                   <li>育児</li>
                   <li>URL共有</li>
                 </ul>
-                <span class="card-link">チェックリストを開く →</span>
+                <span class="card-link">詳しく見る →</span>
               </div>
-            </a>
+            </button>
 
           </div>
         </div>
       </section>
     </main>
+
+    <!-- モーダル: テニススイング分析 -->
+    <dialog id="modal-tennis" class="project-modal" style="--card-accent: #84cc16">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="10" />
+            <path d="M34 14 L42 6" />
+            <path d="M38 6 L42 6 L42 10" />
+            <path d="M18 34 C12 34 8 30 8 24 C8 18 12 14 18 14" />
+          </svg>
+        </div>
+        <h2>テニススイング分析</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          AIによる骨格検出（BlazePose）を活用して、テニスのスイングフォームをリアルタイムに分析するWebアプリです。
+          関節角度や体幹の傾きを自動で可視化し、フォーム改善をサポートします。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>リアルタイム骨格検出による姿勢トラッキング</li>
+          <li>関節角度（肘・肩・膝など）の自動計測</li>
+          <li>スロー再生で細かいフォームを確認</li>
+        </ul>
+        <ul class="tag-list">
+          <li>AI・骨格検出</li>
+          <li>リアルタイム分析</li>
+          <li>角度計測</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/tennis/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: Nuna ベビーカー比較ガイド -->
+    <dialog id="modal-lifestyle" class="project-modal" style="--card-accent: #7c3aed">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="16" cy="38" r="4" />
+            <circle cx="36" cy="38" r="4" />
+            <path d="M12 38 L8 18 L40 18 L36 38" />
+            <path d="M8 18 L4 10" />
+            <path d="M24 10 L24 18" />
+            <path d="M14 26 L38 26" />
+          </svg>
+        </div>
+        <h2>Nuna ベビーカー比較ガイド</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Nuna の現行ベビーカーモデルをスペック・用途別に比較できるガイドページです。
+          重量や折りたたみサイズ、対象月齢など、育児グッズ選びに必要な情報をまとめています。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>全モデルのスペック比較表</li>
+          <li>用途・ライフスタイル別のおすすめ提案</li>
+          <li>選び方のポイント解説</li>
+        </ul>
+        <ul class="tag-list">
+          <li>スペック比較</li>
+          <li>育児グッズ</li>
+          <li>ベビーカー</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/lifestyle/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: 防災DXリサーチ -->
+    <dialog id="modal-disaster" class="project-modal" style="--card-accent: #ea580c">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4 L6 14 L6 28 C6 38 14 46 24 48 C34 46 42 38 42 28 L42 14 Z" />
+            <path d="M18 24 L22 28 L30 20" />
+          </svg>
+        </div>
+        <h2>防災DXリサーチ</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          防災DXに関する国の政策・制度、民間企業の取り組み、注目テーマを週次で更新するリサーチレポートです。
+          防災テクノロジーの最新動向をキャッチアップできます。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>国の政策・補助金・制度のまとめ</li>
+          <li>民間企業の防災ソリューション紹介</li>
+          <li>注目テーマの深掘りレポート</li>
+        </ul>
+        <ul class="tag-list">
+          <li>週次更新</li>
+          <li>政策・制度</li>
+          <li>防災テック</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/disaster-prevention/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: 育児防災チェックリスト -->
+    <dialog id="modal-parenting" class="project-modal" style="--card-accent: #e11d48">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4 C14 4 8 12 8 20 C8 30 24 44 24 44 C24 44 40 30 40 20 C40 12 34 4 24 4Z" />
+            <path d="M18 20 L22 24 L30 16" />
+          </svg>
+        </div>
+        <h2>育児防災チェックリスト</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          乳幼児のいるご家庭向けの防災備蓄チェックリストです。
+          厚生労働省の推奨をベースに、必要なアイテムをリスト化しました。
+          URLで家族と共有でき、自由にカスタマイズも可能です。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>カテゴリ別の備蓄チェックリスト管理</li>
+          <li>チェック状態をURLで家族に共有</li>
+          <li>品目の追加・削除によるカスタマイズ</li>
+        </ul>
+        <ul class="tag-list">
+          <li>防災備蓄</li>
+          <li>育児</li>
+          <li>URL共有</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/parenting/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="container">
@@ -144,5 +307,14 @@
         <small>&copy; 2025 Sample Web Hub. All rights reserved.</small>
       </div>
     </footer>
+
+    <script>
+      /* モーダルの背景（backdrop）クリックで閉じる */
+      document.querySelectorAll('.project-modal').forEach(function(dialog) {
+        dialog.addEventListener('click', function(e) {
+          if (e.target === dialog) dialog.close();
+        });
+      });
+    </script>
   </body>
 </html>
