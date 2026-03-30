@@ -676,6 +676,28 @@ pre {
   }
 }
 
+/* --- 広告エリア --- */
+.ad-section {
+  padding: 1.5rem 0;
+}
+
+.ad-unit {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.ad-unit ins {
+  width: 100%;
+}
+
 .site-footer {
   margin: 4rem auto 0;
   padding: 3rem 1rem 4rem;
