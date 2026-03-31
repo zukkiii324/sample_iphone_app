@@ -26,145 +26,168 @@
       </div>
     </header>
 
-    <main class="container">
+    <main class="container full-bleed-main">
       <nav class="breadcrumbs" aria-label="パンくずリスト">
         <a href="../../index.html">ホーム</a>
         <span aria-hidden="true">/</span>
         <span>自宅不動産購入ガイド</span>
       </nav>
 
-      <section class="category-hero">
+      <section class="category-hero visual-hero">
         <h1>はじめての自宅購入ガイド</h1>
         <p>
-          住宅購入は「物件選び」だけでなく、資金計画・住宅ローン・税制・将来の売却まで見ておくことが大切です。
-          このページでは、迷いやすいポイントをインフォグラフィック形式で整理しています。
+          「文字を読むだけ」ではなく、スクロールしながら図解で流れを理解できる構成にしました。
+          はじめての方でも、全体像→比較→行動の順に迷わず進められます。
         </p>
         <div class="hero-actions">
-          <a class="button" href="#roadmap">全体の流れを見る</a>
-          <a class="button secondary" href="#official-sources">公的情報の確認先</a>
+          <a class="button" href="#roadmap">3分で全体像を見る</a>
+          <a class="button secondary" href="#official-sources">公的情報を確認する</a>
+        </div>
+        <div class="hero-kpi" aria-label="ガイドの要点">
+          <article>
+            <strong>5</strong>
+            <span>購入ステップ</span>
+          </article>
+          <article>
+            <strong>6</strong>
+            <span>判断テーマ</span>
+          </article>
+          <article>
+            <strong>3</strong>
+            <span>設計レイヤー</span>
+          </article>
+          <article>
+            <strong>1</strong>
+            <span>毎月の見直し習慣</span>
+          </article>
         </div>
         <p class="hero-meta">最終更新: 2026-03-31 / 想定読者: 初めて住宅を買うご家庭</p>
       </section>
 
-      <div class="category-layout">
-        <aside class="category-navigation">
-          <h2>コンテンツ</h2>
-          <ul>
-            <li><a href="#roadmap">購入ロードマップ</a></li>
-            <li><a href="#knowledge">住宅購入で重要な6テーマ</a></li>
-            <li><a href="#strategy">ガイドサイト構築戦略</a></li>
-            <li><a href="#official-sources">公的情報の確認先</a></li>
-          </ul>
-        </aside>
+      <nav class="quick-jump" aria-label="ページ内目次">
+        <a href="#roadmap">購入ロードマップ</a>
+        <a href="#knowledge">6つの重要知識</a>
+        <a href="#strategy">設計図</a>
+        <a href="#official-sources">公的情報</a>
+      </nav>
 
+      <div class="category-layout single-column">
         <div class="category-content">
-          <section id="roadmap" class="section">
+          <section id="roadmap" class="section visual-section">
             <h2 class="section-title">購入ロードマップ（全体像）</h2>
-            <p class="lead">「何を」「どの順番で」決めればよいかを5ステップで可視化しました。</p>
-            <ol class="roadmap-grid">
-              <li class="roadmap-card">
-                <span class="step">STEP 1</span>
-                <h3>家計の見える化</h3>
-                <p>手取り、固定費、教育費を整理し、毎月の返済上限を先に決めます。</p>
+            <p class="lead">上から順に読むだけで、購入準備の流れをそのまま実行できます。</p>
+            <ol class="roadmap-timeline">
+              <li class="timeline-step">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h3>家計の見える化</h3>
+                  <p>手取り・固定費・教育費を並べ、無理なく返せる毎月上限を先に決めます。</p>
+                </div>
               </li>
-              <li class="roadmap-card">
-                <span class="step">STEP 2</span>
-                <h3>住宅ローンの比較</h3>
-                <p>変動・固定・固定期間選択を比較し、金利上昇時の返済シミュレーションを行います。</p>
+              <li class="timeline-step">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h3>住宅ローンの比較</h3>
+                  <p>変動・固定・固定期間選択を並べ、金利上昇時の返済額まで確認します。</p>
+                </div>
               </li>
-              <li class="roadmap-card">
-                <span class="step">STEP 3</span>
-                <h3>エリアと学区の確認</h3>
-                <p>通勤時間だけでなく、学区、ハザード、生活利便性を地図で重ねて確認します。</p>
+              <li class="timeline-step">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h3>エリアと学区の確認</h3>
+                  <p>通勤時間だけでなく、学区・ハザード・生活利便を地図で重ねて見ます。</p>
+                </div>
               </li>
-              <li class="roadmap-card">
-                <span class="step">STEP 4</span>
-                <h3>権利関係と契約チェック</h3>
-                <p>所有権か定期借地権か、管理規約、修繕計画、引き渡し条件を確認します。</p>
+              <li class="timeline-step">
+                <div class="step-badge">STEP 4</div>
+                <div class="step-body">
+                  <h3>権利関係と契約チェック</h3>
+                  <p>所有権か定期借地権か、管理規約、修繕計画、引き渡し条件を確認します。</p>
+                </div>
               </li>
-              <li class="roadmap-card">
-                <span class="step">STEP 5</span>
-                <h3>税制・出口戦略の設計</h3>
-                <p>住宅ローン減税の対象条件と、将来のリセール（売却）しやすさを同時に見ます。</p>
+              <li class="timeline-step">
+                <div class="step-badge">STEP 5</div>
+                <div class="step-body">
+                  <h3>税制・出口戦略の設計</h3>
+                  <p>住宅ローン減税の条件と、将来売却しやすいかをセットで判断します。</p>
+                </div>
               </li>
             </ol>
           </section>
 
-          <section id="knowledge" class="section">
+          <section id="knowledge" class="section visual-section">
             <h2 class="section-title">住宅購入で重要な6テーマ</h2>
-            <p class="lead">住宅購入前に、最低限ここだけは押さえておくと判断ミスを減らせます。</p>
-            <div class="insight-grid">
+            <p class="lead">「何を比べればよいか」がひと目で分かるよう、図解カードで整理しました。</p>
+            <div class="insight-board">
               <article class="insight-card">
                 <h3>1. 住宅ローン</h3>
                 <ul>
                   <li>借入可能額ではなく「返済可能額」で計画する。</li>
-                  <li>諸費用（登記・仲介・火災保険など）を物件価格と分けて管理する。</li>
-                  <li>団体信用生命保険（団信）の保障範囲も確認する。</li>
+                  <li>諸費用を物件価格と分けて管理する。</li>
+                  <li>団信の保障範囲も確認する。</li>
                 </ul>
               </article>
-
               <article class="insight-card">
                 <h3>2. 金利</h3>
                 <ul>
-                  <li>変動金利は返済額が抑えやすい一方、将来の上昇リスクがある。</li>
-                  <li>固定金利は返済計画が立てやすいが、初期金利は高めになりやすい。</li>
-                  <li>比較時は「適用金利」「手数料」「繰上返済条件」をセットで見る。</li>
+                  <li>変動金利は低め、ただし将来上昇リスクがある。</li>
+                  <li>固定金利は安心、ただし初期金利は高めになりやすい。</li>
+                  <li>適用金利・手数料・繰上返済条件を一緒に比較する。</li>
                 </ul>
               </article>
-
               <article class="insight-card">
                 <h3>3. 住宅ローン減税</h3>
                 <ul>
-                  <li>入居時期・床面積・所得要件などにより対象条件が異なる。</li>
-                  <li>新築・中古・省エネ性能で控除枠が変わるため、契約前に税理士または公的資料で確認する。</li>
-                  <li>確定申告や年末調整の手続きを逆算して準備する。</li>
+                  <li>入居時期・床面積・所得要件で対象条件が変わる。</li>
+                  <li>新築/中古/省エネ性能で控除枠が変わる。</li>
+                  <li>申告手続きを逆算して準備する。</li>
                 </ul>
               </article>
-
               <article class="insight-card">
                 <h3>4. リセール（売却）</h3>
                 <ul>
-                  <li>駅距離、管理状態、周辺供給の増減は売却価格に影響しやすい。</li>
-                  <li>購入時に「10年後に売れる理由」を説明できる物件を選ぶ。</li>
-                  <li>修繕積立金の不足は将来の価格下落リスクになる。</li>
+                  <li>駅距離、管理状態、周辺供給が売却価格に影響しやすい。</li>
+                  <li>「10年後に売れる理由」を説明できる物件を選ぶ。</li>
+                  <li>修繕積立金不足は価格下落リスクになる。</li>
                 </ul>
               </article>
-
               <article class="insight-card">
                 <h3>5. 学区</h3>
                 <ul>
-                  <li>学区は自治体の教育委員会サイトで最新情報を確認する。</li>
-                  <li>将来の通学距離、通学路の安全性、学童や保育園の動線も見る。</li>
-                  <li>学区改編予定がある地域は、入居時点の区分を必ず確認する。</li>
+                  <li>教育委員会サイトで最新情報を確認する。</li>
+                  <li>通学距離・通学路安全・学童動線まで見る。</li>
+                  <li>学区改編予定の有無を確認する。</li>
                 </ul>
               </article>
-
               <article class="insight-card">
                 <h3>6. 権利（所有権・定期借地）</h3>
                 <ul>
-                  <li>所有権: 土地・建物を保有でき、相続や売却の自由度が高い。</li>
-                  <li>定期借地権: 土地を借りる形式で、一般に初期取得価格を抑えやすい。</li>
-                  <li>定期借地は契約期間・地代改定・満了時条件を契約書で確認する。</li>
+                  <li>所有権は自由度が高く、相続・売却しやすい。</li>
+                  <li>定期借地権は初期取得価格を抑えやすい。</li>
+                  <li>契約期間・地代改定・満了時条件を確認する。</li>
                 </ul>
               </article>
             </div>
           </section>
 
-          <section id="strategy" class="section">
+          <section id="strategy" class="section visual-section">
             <h2 class="section-title">ガイドサイト構築戦略（設計図）</h2>
-            <p class="lead">「調べる→比較する→決める」を迷わず進めるため、情報設計を3層に分けます。</p>
-            <div class="strategy-flow">
+            <p class="lead">縦スクロールで「把握→比較→実行」に自然に進める、3層の情報設計です。</p>
+            <div class="layer-diagram" role="img" aria-label="3つのレイヤーの設計図">
               <article>
-                <h3>レイヤーA: 入口（3分で把握）</h3>
-                <p>購入ロードマップ、総予算の考え方、失敗例をカード化。最初に全体像をつかめる設計にします。</p>
+                <span class="layer-label">レイヤーA</span>
+                <h3>入口（3分で把握）</h3>
+                <p>購入ロードマップ、総予算の考え方、失敗例をカード化して全体像をつかむ。</p>
               </article>
               <article>
-                <h3>レイヤーB: 比較（10分で判断材料）</h3>
-                <p>ローン、金利、税制、権利形態、学区、リセールを比較表で可視化し、選択肢の違いを明確にします。</p>
+                <span class="layer-label">レイヤーB</span>
+                <h3>比較（10分で判断）</h3>
+                <p>ローン・金利・税制・権利形態・学区・リセールを表で比較する。</p>
               </article>
               <article>
-                <h3>レイヤーC: 実行（契約前チェック）</h3>
-                <p>内見チェックリスト、必要書類、期限管理を配置し、契約・申請の漏れを防ぎます。</p>
+                <span class="layer-label">レイヤーC</span>
+                <h3>実行（契約前チェック）</h3>
+                <p>内見チェック、必要書類、期限管理を配置して抜け漏れを防ぐ。</p>
               </article>
             </div>
             <div class="data-callout">
@@ -173,10 +196,10 @@
             </div>
           </section>
 
-          <section id="official-sources" class="section">
+          <section id="official-sources" class="section visual-section">
             <h2 class="section-title">公的情報の確認先（リサーチ元）</h2>
-            <p class="lead">最終判断は必ず一次情報で行いましょう。以下は住宅購入時によく使う確認先です。</p>
-            <ul class="source-list">
+            <p class="lead">最終判断は必ず一次情報で行いましょう。確認先をカード形式でまとめています。</p>
+            <ul class="source-list visual-source-list">
               <li><a href="https://www.flat35.com/kinri/index.html" target="_blank" rel="noopener noreferrer">住宅金融支援機構（フラット35 金利情報）</a></li>
               <li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1213.htm" target="_blank" rel="noopener noreferrer">国税庁（住宅借入金等特別控除）</a></li>
               <li><a href="https://www.mlit.go.jp/totikensangyo/totikensangyo_tk3_000097.html" target="_blank" rel="noopener noreferrer">国土交通省（不動産取引価格情報・関連情報）</a></li>
