@@ -1,6 +1,13 @@
 (function () {
+  "use strict";
+
   const deductionRate = 0.007;
   const residentTaxCap = 97500;
+  const yenFormatter = new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+    maximumFractionDigits: 0
+  });
 
   const deductionRules = {
     "new-longterm": {
@@ -35,13 +42,26 @@
     }
   };
 
-  function byId(id) {
-    return document.getElementById(id);
+  function formatYen(value) {
+    return yenFormatter.format(value);
   }
 
-  function formatYen(value) {
-    return new Intl.NumberFormat("ja-JP", { style: "currency", currency: "JPY", maximumFractionDigits: 0 }).format(value);
-  }
+  const elements = {
+    loanAmount: document.getElementById("loan-amount"),
+    interestRate: document.getElementById("interest-rate"),
+    loanYears: document.getElementById("loan-years"),
+    moveInYear: document.getElementById("move-in-year"),
+    propertyType: document.getElementById("property-type"),
+    incomeTax: document.getElementById("income-tax"),
+    residentTax: document.getElementById("resident-tax"),
+    monthlyPayment: document.getElementById("monthly-payment"),
+    totalPayment: document.getElementById("total-payment"),
+    deductionSystem: document.getElementById("deduction-system"),
+    deductionAfterTax: document.getElementById("deduction-after-tax"),
+    deductionYears: document.getElementById("deduction-years"),
+    resultMessage: document.getElementById("result-message"),
+    calcButton: document.getElementById("calc-button")
+  };
 
   function calcMonthlyPayment(principal, yearlyRate, years) {
     const monthlyRate = yearlyRate / 12;
@@ -72,16 +92,16 @@
   }
 
   function calculate() {
-    const principal = Number(byId("loan-amount").value) * 10000;
-    const yearlyRate = Number(byId("interest-rate").value) / 100;
-    const years = Number(byId("loan-years").value);
-    const moveInYear = Number(byId("move-in-year").value);
-    const propertyType = byId("property-type").value;
-    const incomeTax = Number(byId("income-tax").value);
-    const residentTax = Number(byId("resident-tax").value);
+    const principal = Number(elements.loanAmount.value) * 10000;
+    const yearlyRate = Number(elements.interestRate.value) / 100;
+    const years = Number(elements.loanYears.value);
+    const moveInYear = Number(elements.moveInYear.value);
+    const propertyType = elements.propertyType.value;
+    const incomeTax = Number(elements.incomeTax.value);
+    const residentTax = Number(elements.residentTax.value);
 
     if (!principal || years <= 0) {
-      byId("result-message").textContent = "入力値を確認してください（借入金額・返済期間は必須です）。";
+      elements.resultMessage.textContent = "入力値を確認してください（借入金額・返済期間は必須です）。";
       return;
     }
 
@@ -98,16 +118,16 @@
     const maxByTax = incomeTax + Math.min(residentTax, residentTaxCap);
     const deductionAfterTaxLimit = Math.min(deductionBySystem, maxByTax);
 
-    byId("monthly-payment").textContent = formatYen(monthlyPayment);
-    byId("total-payment").textContent = formatYen(totalPayment);
-    byId("deduction-system").textContent = limit > 0 ? formatYen(deductionBySystem) : "対象外（条件要確認）";
-    byId("deduction-after-tax").textContent = limit > 0 ? formatYen(deductionAfterTaxLimit) : "対象外（条件要確認）";
-    byId("deduction-years").textContent = deductionYears > 0 ? deductionYears + "年" : "対象外";
+    elements.monthlyPayment.textContent = formatYen(monthlyPayment);
+    elements.totalPayment.textContent = formatYen(totalPayment);
+    elements.deductionSystem.textContent = limit > 0 ? formatYen(deductionBySystem) : "対象外（条件要確認）";
+    elements.deductionAfterTax.textContent = limit > 0 ? formatYen(deductionAfterTaxLimit) : "対象外（条件要確認）";
+    elements.deductionYears.textContent = deductionYears > 0 ? deductionYears + "年" : "対象外";
 
-    byId("result-message").textContent =
+    elements.resultMessage.textContent =
       "この試算は、控除率0.7%・住民税控除上限9.75万円を前提にした目安です。最終判断は最新の公的情報で確認しましょう。";
   }
 
-  byId("calc-button").addEventListener("click", calculate);
+  elements.calcButton.addEventListener("click", calculate);
   calculate();
 })();
