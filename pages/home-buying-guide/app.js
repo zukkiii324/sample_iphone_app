@@ -56,6 +56,21 @@
     return numerator / denominator;
   }
 
+  function calcOutstandingBalance(principal, yearlyRate, years, paidMonths) {
+    const monthlyRate = yearlyRate / 12;
+    const totalMonths = years * 12;
+    const elapsedMonths = Math.min(Math.max(paidMonths, 0), totalMonths);
+
+    if (monthlyRate === 0) {
+      return principal * (totalMonths - elapsedMonths) / totalMonths;
+    }
+
+    const monthlyPayment = calcMonthlyPayment(principal, yearlyRate, years);
+    const grownPrincipal = principal * Math.pow(1 + monthlyRate, elapsedMonths);
+    const paidValue = monthlyPayment * ((Math.pow(1 + monthlyRate, elapsedMonths) - 1) / monthlyRate);
+    return Math.max(grownPrincipal - paidValue, 0);
+  }
+
   function calculate() {
     const principal = Number(byId("loan-amount").value) * 10000;
     const yearlyRate = Number(byId("interest-rate").value) / 100;
@@ -77,7 +92,8 @@
     const limit = rule ? rule.limit : 0;
     const deductionYears = rule ? rule.years : 0;
 
-    const baseForDeduction = Math.min(principal, limit);
+    const yearEndOutstanding = calcOutstandingBalance(principal, yearlyRate, years, 12);
+    const baseForDeduction = Math.min(yearEndOutstanding, limit);
     const deductionBySystem = baseForDeduction * deductionRate;
     const maxByTax = incomeTax + Math.min(residentTax, residentTaxCap);
     const deductionAfterTaxLimit = Math.min(deductionBySystem, maxByTax);
