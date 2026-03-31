@@ -11,6 +11,12 @@
 │   └── css/
 │       └── base.css             … 全ページで共有するスタイル
 ├── pages/
+│   ├── lifestyle/               … ミニマル育児ブログ
+│   ├── parenting/               … 育児防災チェックリスト
+│   ├── disaster-prevention/     … 防災DXリサーチ
+│   ├── home-buying-guide/       … 自宅不動産購入ガイド
+│   ├── tennis/                  … テニススイング分析
+│   └── nisa-simulator/          … 新NISA積立・株式投資シミュレーター
 │   ├── claude-code/             … Claude Code活用ガイドのサブサイト
 │   │   ├── index.html
 │   │   └── styles.css
@@ -31,6 +37,7 @@
 └── 内容.md                       … メモや記事などを置くためのファイル
 ```
 
+ホームページとサブページは共通のデザインシステムを利用しながらも、カテゴリごとに CSS や JavaScript を追加できます。GitHub Pages にデプロイする場合は、`index.html` を含む `main` ブランチのルートを公開対象に設定してください。サブページは `/pages/<カテゴリ名>/index.html` で公開されます。
 ホームページとサブページは共通のデザインシステムを利用しながらも、カテゴリごとに CSS やアセットを追加できます。GitHub Pages にデプロイする場合は、`index.html` を含む `main` ブランチのルートを公開対象に設定してください。サブページは `/pages/<カテゴリ名>/index.html` で公開されます。
 
 
