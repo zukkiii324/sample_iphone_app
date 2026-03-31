@@ -36,6 +36,21 @@
         </p>
         <div class="hero-actions">
           <a class="button hero-button" href="#projects">プロジェクトを見る</a>
+          <a class="button secondary" href="#quick-filters">カテゴリから探す</a>
+        </div>
+        <div class="hero-stats" aria-label="プロジェクト概要">
+          <article class="hero-stat">
+            <strong>4</strong>
+            <span>公開中のMVP</span>
+          </article>
+          <article class="hero-stat">
+            <strong>3</strong>
+            <span>注力テーマ</span>
+          </article>
+          <article class="hero-stat">
+            <strong>100%</strong>
+            <span>モバイル対応</span>
+          </article>
         </div>
       </div>
     </section>
@@ -56,13 +71,24 @@
     </aside>
 
     <main>
+      <section class="section section-intro" id="quick-filters">
+        <h2 class="section-title">目的に合わせて探す</h2>
+        <p class="lead">興味のあるテーマを選ぶと、該当するプロジェクトだけを表示します。初めての方でも迷わず目的のMVPにアクセスできます。</p>
+        <div class="filter-toolbar" role="toolbar" aria-label="プロジェクトフィルター">
+          <button class="filter-chip is-active" type="button" data-filter="all">すべて</button>
+          <button class="filter-chip" type="button" data-filter="ai">AI・分析</button>
+          <button class="filter-chip" type="button" data-filter="family">育児・生活</button>
+          <button class="filter-chip" type="button" data-filter="safety">防災・リサーチ</button>
+        </div>
+        <p class="filter-status" aria-live="polite">4件のプロジェクトを表示中</p>
+      </section>
       <section id="projects" class="projects-section">
         <div class="container">
           <h2 class="section-title">プロジェクト</h2>
           <div class="project-grid">
 
             <!-- テニススイング分析 -->
-            <button class="card card-project" style="--card-accent: #84cc16"
+            <button class="card card-project" data-tags="ai" style="--card-accent: #84cc16"
                     onclick="document.getElementById('modal-tennis').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -85,7 +111,7 @@
             </button>
 
             <!-- Nuna ベビーカー比較ガイド -->
-            <button class="card card-project" style="--card-accent: #7c3aed"
+            <button class="card card-project" data-tags="family" style="--card-accent: #7c3aed"
                     onclick="document.getElementById('modal-lifestyle').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -110,7 +136,7 @@
             </button>
 
             <!-- 防災DXリサーチ -->
-            <button class="card card-project" style="--card-accent: #ea580c"
+            <button class="card card-project" data-tags="safety" style="--card-accent: #ea580c"
                     onclick="document.getElementById('modal-disaster').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -131,7 +157,7 @@
             </button>
 
             <!-- 育児防災チェックリスト -->
-            <button class="card card-project" style="--card-accent: #e11d48"
+            <button class="card card-project" data-tags="family safety" style="--card-accent: #e11d48"
                     onclick="document.getElementById('modal-parenting').showModal()">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -346,6 +372,39 @@
       document.querySelectorAll('.project-modal').forEach(function(dialog) {
         dialog.addEventListener('click', function(e) {
           if (e.target === dialog) dialog.close();
+        });
+      });
+
+      /* フィルターチップでプロジェクト表示を切り替え */
+      const filterChips = document.querySelectorAll('.filter-chip');
+      const projectCards = document.querySelectorAll('.card-project');
+      const filterStatus = document.querySelector('.filter-status');
+
+      function updateProjectVisibility(tag) {
+        let visibleCount = 0;
+
+        projectCards.forEach(function(card) {
+          const tags = (card.dataset.tags || '').split(' ');
+          const showCard = tag === 'all' || tags.includes(tag);
+          card.hidden = !showCard;
+
+          if (showCard) {
+            visibleCount += 1;
+          }
+        });
+
+        if (filterStatus) {
+          filterStatus.textContent = visibleCount + '件のプロジェクトを表示中';
+        }
+      }
+
+      filterChips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          filterChips.forEach(function(button) {
+            button.classList.remove('is-active');
+          });
+          chip.classList.add('is-active');
+          updateProjectVisibility(chip.dataset.filter);
         });
       });
     </script>

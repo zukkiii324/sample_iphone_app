@@ -195,6 +195,33 @@ ol {
   flex-wrap: wrap;
 }
 
+.hero-stats {
+  margin: 2.2rem auto 0;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  max-width: 680px;
+}
+
+.hero-stat {
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.hero-stat strong {
+  display: block;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.hero-stat span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -250,6 +277,49 @@ main {
 }
 
 /* --- プロジェクトセクション（トップページ） --- */
+.section-intro {
+  margin-bottom: 1.5rem;
+}
+
+.filter-toolbar {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+.filter-chip {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  min-height: 40px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover,
+.filter-chip:focus-visible {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, #ffffff);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.14);
+}
+
+.filter-chip.is-active {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border-color: transparent;
+}
+
+.filter-status {
+  margin-top: 0.9rem;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
 .projects-section {
   padding-bottom: 2rem;
 }
@@ -347,6 +417,10 @@ button.card-project:hover,
 button.card-project:focus-visible {
   box-shadow: 0 16px 48px color-mix(in srgb, var(--card-accent, var(--color-accent)) 20%, transparent);
   transform: translateY(-4px);
+}
+
+button.card-project[hidden] {
+  display: none;
 }
 
 button.card-project:hover .card-link {
@@ -765,6 +839,11 @@ pre {
     margin-bottom: 2rem;
   }
 
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
   .section {
     width: min(100%, 96vw);
     padding: 1.8rem 1.4rem;
@@ -926,6 +1005,15 @@ pre {
     gap: 0.8rem;
   }
 
+  .hero-stats {
+    grid-template-columns: 1fr;
+    max-width: 280px;
+  }
+
+  .hero-stat {
+    text-align: left;
+  }
+
   .hero-actions .button {
     width: 100%;
     max-width: 280px;
@@ -936,6 +1024,15 @@ pre {
     padding: 1.4rem 1rem;
     border-radius: var(--radius-md);
     margin-bottom: 1.5rem;
+  }
+
+  .filter-toolbar {
+    gap: 0.5rem;
+  }
+
+  .filter-chip {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
   }
 
   .section-title {
