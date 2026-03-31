@@ -19,7 +19,8 @@
         <nav aria-label="主要ナビゲーション">
           <ul class="nav-links">
             <li><a href="../../index.html#projects">カテゴリ一覧</a></li>
-            <li><a href="#minimalist">記事一覧</a></li>
+            <li><a href="#article-index">記事カード</a></li>
+            <li><a href="#article-library">記事本文</a></li>
             <li><a href="#updates">更新履歴</a></li>
           </ul>
         </nav>
@@ -34,132 +35,182 @@
       </nav>
 
       <section class="category-hero">
+        <p class="hero-kicker">Minimal Parenting Journal</p>
         <h1>ミニマル育児ブログ</h1>
         <p>
-          モノも情報も増えやすい子育て期だからこそ、「本当に必要なもの」を見極めるヒントをまとめたブログです。
-          焦らない・比べない・抱え込みすぎないを合言葉に、毎日を少し軽くする実践アイデアをお届けします。
+          「読みやすい」「迷わない」「すぐ試せる」を大切に、
+          記事カードから本文へすぐ移動できる構成に整理しました。
+          育児で気になるテーマを選び、必要な部分だけ短時間で読めます。
         </p>
         <div class="hero-actions">
-          <a class="button" href="#minimalist">記事一覧を見る</a>
-          <a class="button secondary" href="#updates">更新履歴</a>
+          <a class="button" href="#article-index">記事カードを見る</a>
+          <a class="button secondary" href="#article-library">本文を読む</a>
         </div>
-        <p class="hero-meta">運営テーマ：ミニマル育児 / 暮らしの整え方</p>
       </section>
 
       <div class="category-layout">
         <aside class="category-navigation">
           <h2>コンテンツ</h2>
           <ul>
-            <li><a href="#minimalist">記事一覧</a></li>
+            <li><a href="#article-index">記事カード一覧</a></li>
+            <li><a href="#article-library">記事本文一覧</a></li>
             <li><a href="#updates">アップデート履歴</a></li>
           </ul>
         </aside>
 
         <div class="category-content">
-          <section id="minimalist" class="section">
-            <h2 class="section-title">記事一覧</h2>
-            <p class="lead">
-              本当に必要なものだけを厳選し、シンプルで快適な育児を目指すミニマリストの視点から、
-              実体験にもとづく記事をお届けします。
-            </p>
-            <div class="article-grid">
-              <article class="article-card">
-                <div class="article-card__meta">
-                  <time datetime="2026-03-31">2026.03.31</time>
-                  <ul class="tag-list">
-                    <li>トイトレ</li>
-                    <li>見守り</li>
-                  </ul>
-                </div>
-                <h3>トイトレは「待つ」が正解 — ミニマリストが実践する道具も焦りも手放すトイレトレーニング</h3>
-                <p>
-                  「2歳になったのにまだオムツ？」「周りはもう外れてるのに…」——
-                  トイレトレーニングは、他の子と比べて焦りが生まれやすい育児の悩みどころです。
-                  便座シート、踏み台、ごほうびシール、トレーニングパンツ……対策グッズを買い込むほど、
-                  親も子もプレッシャーが増えていきます。ミニマリストの我が家では、
-                  ①「始めどきサイン」が3つ揃うまで絶対に始めない、②道具は補助便座1つだけ、
-                  ③失敗しても声をかけない「3秒ルール」、④できた日をカレンダーに丸をつけるだけの記録法
-                  ——この4つの引き算ルールで、親子ともにストレスなくオムツを卒業できました。
-                  焦らない・比べない・モノを増やさないトイトレ術を、実体験ベースでお伝えします。
-                </p>
-              </article>
+          <section id="article-index" class="section">
+            <h2 class="section-title">記事カード一覧</h2>
+            <p class="lead">タイトルカードを押すと、そのまま記事本文にジャンプできます。</p>
 
-              <article class="article-card">
-                <div class="article-card__meta">
-                  <time datetime="2026-03-30">2026.03.30</time>
-                  <ul class="tag-list">
-                    <li>情報整理</li>
-                    <li>メンタル</li>
-                  </ul>
-                </div>
-                <h3>育児情報の断捨離 — SNS や育児書に振り回されない 3 つのルール</h3>
-                <p>
-                  「離乳食はこうすべき」「寝かしつけの正解はこれ」——検索するほど増える情報に疲れていませんか？
-                  ミニマリスト流・情報との付き合い方として、
-                  ①信頼できる情報源を 3 つに絞る、②比較をやめて"我が家の正解"を決める、③SNS の閲覧時間に上限を設ける、
-                  という 3 つのルールを実践レポートとともに紹介します。
-                  情報を減らしたら、育児がぐっとラクになりました。
-                </p>
-              </article>
+            <div class="article-index-grid">
+              <a class="article-index-card" href="#article-toilet-training">
+                <p class="article-index-card__meta">2026.03.31 / トイトレ・見守り</p>
+                <h3>トイトレは「待つ」が正解</h3>
+                <p>焦りを減らす4つの引き算ルールを、実体験ベースで紹介します。</p>
+                <span class="article-index-card__link">本文を読む →</span>
+              </a>
 
-              <article class="article-card">
-                <div class="article-card__meta">
-                  <time datetime="2024-06-15">2024.06.15</time>
-                  <ul class="tag-list">
-                    <li>ベビーカー</li>
-                    <li>厳選</li>
-                  </ul>
-                </div>
-                <h3>ベビーカーは本当に必要？ミニマリストが選ぶ 1 台の基準</h3>
-                <p>
-                  多機能モデルに惹かれがちですが、本当に使うシーンを洗い出すと意外と選択肢は絞られます。
-                  我が家がたどり着いた「1台で十分」の判断軸をまとめました。
-                </p>
-              </article>
+              <a class="article-index-card" href="#article-info-declutter">
+                <p class="article-index-card__meta">2026.03.30 / 情報整理・メンタル</p>
+                <h3>育児情報の断捨離</h3>
+                <p>SNSと検索疲れを減らす、3つのシンプルなルールをまとめました。</p>
+                <span class="article-index-card__link">本文を読む →</span>
+              </a>
 
-              <article class="article-card">
-                <div class="article-card__meta">
-                  <time datetime="2024-06-08">2024.06.08</time>
-                  <ul class="tag-list">
-                    <li>収納</li>
-                    <li>断捨離</li>
-                  </ul>
-                </div>
-                <h3>増え続ける育児グッズを手放すタイミングと判断基準</h3>
-                <p>
-                  「もったいない」で溜まっていくベビー用品。月齢ごとの使用頻度を見直して、
-                  必要なものだけを残す仕組みづくりを紹介します。
-                </p>
-              </article>
+              <a class="article-index-card" href="#article-stroller">
+                <p class="article-index-card__meta">2024.06.15 / ベビーカー・厳選</p>
+                <h3>ベビーカーは本当に必要？</h3>
+                <p>「1台で十分」と判断するための、現実的なチェックポイントを解説します。</p>
+                <span class="article-index-card__link">本文を読む →</span>
+              </a>
 
-              <article class="article-card">
-                <div class="article-card__meta">
-                  <time datetime="2024-05-28">2024.05.28</time>
-                  <ul class="tag-list">
-                    <li>お出かけ</li>
-                    <li>持ち物</li>
-                  </ul>
-                </div>
-                <h3>赤ちゃんとのお出かけ、荷物を半分にする 5 つのコツ</h3>
-                <p>
-                  おむつ・着替え・ミルク…気づけばバッグがパンパンに。
-                  外出先で本当に必要なものを見極め、身軽にお出かけする方法をシェアします。
-                </p>
-              </article>
+              <a class="article-index-card" href="#article-storage">
+                <p class="article-index-card__meta">2024.06.08 / 収納・断捨離</p>
+                <h3>増え続ける育児グッズの手放し方</h3>
+                <p>迷わず見直せる「判断タイミング」と「残す基準」を紹介します。</p>
+                <span class="article-index-card__link">本文を読む →</span>
+              </a>
+
+              <a class="article-index-card" href="#article-outing">
+                <p class="article-index-card__meta">2024.05.28 / お出かけ・持ち物</p>
+                <h3>お出かけ荷物を半分にするコツ</h3>
+                <p>外出先で困らない範囲で、持ち物を軽くする具体策をまとめました。</p>
+                <span class="article-index-card__link">本文を読む →</span>
+              </a>
             </div>
+          </section>
+
+          <section id="article-library" class="section">
+            <h2 class="section-title">記事本文一覧</h2>
+
+            <article id="article-toilet-training" class="blog-post">
+              <header class="blog-post__header">
+                <p class="blog-post__meta">2026.03.31 / トイトレ・見守り</p>
+                <h3>トイトレは「待つ」が正解 — 道具も焦りも手放すトイレトレーニング</h3>
+              </header>
+              <div class="blog-post__body">
+                <p>
+                  「2歳になったのにまだオムツ？」「周りはもう外れてるのに…」と不安になることは珍しくありません。
+                  でも、焦って始めるほど親子ともに疲れやすくなります。
+                </p>
+                <p>
+                  我が家では、はじめる目安を「本人がトイレに興味を示す」「おしっこの間隔が空く」「簡単な声かけが通る」の3つに限定しました。
+                  この条件がそろうまでは、準備だけして待つ方針です。
+                </p>
+                <ul>
+                  <li>道具は補助便座1つに絞る</li>
+                  <li>失敗時は責めず、短く声かけして終了</li>
+                  <li>記録はカレンダーに丸をつけるだけにする</li>
+                </ul>
+                <p>
+                  「やることを増やす」よりも「減らす」方が、長く続きます。
+                  親の負担を減らすことが、結果的に子どもの安心にもつながります。
+                </p>
+              </div>
+            </article>
+
+            <article id="article-info-declutter" class="blog-post">
+              <header class="blog-post__header">
+                <p class="blog-post__meta">2026.03.30 / 情報整理・メンタル</p>
+                <h3>育児情報の断捨離 — SNSや育児書に振り回されない3つのルール</h3>
+              </header>
+              <div class="blog-post__body">
+                <p>
+                  情報が多い時代は、正解を探すほど不安が増えやすいです。
+                  そこで我が家は、情報の入口そのものを減らすことから始めました。
+                </p>
+                <ol>
+                  <li>信頼する情報源を3つに絞る（公的機関＋医療者＋1冊の本）</li>
+                  <li>「比較」より「我が家で続くか」を判断基準にする</li>
+                  <li>SNSは1日15分までと決める</li>
+                </ol>
+                <p>
+                  情報を減らすと、考える時間より「子どもと過ごす時間」が増えます。
+                  完璧より、回る仕組みを優先するのがおすすめです。
+                </p>
+              </div>
+            </article>
+
+            <article id="article-stroller" class="blog-post">
+              <header class="blog-post__header">
+                <p class="blog-post__meta">2024.06.15 / ベビーカー・厳選</p>
+                <h3>ベビーカーは本当に必要？ミニマリストが選ぶ1台の基準</h3>
+              </header>
+              <div class="blog-post__body">
+                <p>
+                  多機能モデルは魅力的ですが、使う場面を洗い出すと必要条件は意外と少なくなります。
+                  まずは「移動手段」「収納スペース」「持ち上げ回数」の3点を確認しましょう。
+                </p>
+                <p>
+                  必要な機能を先に決めると、価格や口コミに振り回されにくくなります。
+                  わが家では、軽さと折りたたみやすさを最優先にして1台で運用しています。
+                </p>
+              </div>
+            </article>
+
+            <article id="article-storage" class="blog-post">
+              <header class="blog-post__header">
+                <p class="blog-post__meta">2024.06.08 / 収納・断捨離</p>
+                <h3>増え続ける育児グッズを手放すタイミングと判断基準</h3>
+              </header>
+              <div class="blog-post__body">
+                <p>
+                  使うかもしれない物は、残し続けると収納を圧迫します。
+                  「1か月使わない」「次のサイズが必要になった」の2条件で見直すと判断が早くなります。
+                </p>
+                <p>
+                  手放した後に困る不安がある物は、写真を残して記録しておく方法が有効です。
+                  感情と実用を分けることで、無理なく片づけが進みます。
+                </p>
+              </div>
+            </article>
+
+            <article id="article-outing" class="blog-post">
+              <header class="blog-post__header">
+                <p class="blog-post__meta">2024.05.28 / お出かけ・持ち物</p>
+                <h3>赤ちゃんとのお出かけ、荷物を半分にする5つのコツ</h3>
+              </header>
+              <div class="blog-post__body">
+                <p>
+                  おむつ、着替え、ミルクなど、赤ちゃんとの外出は荷物が増えがちです。
+                  まずは「現地調達できる物」「絶対に必要な物」を分けて考えるのがおすすめです。
+                </p>
+                <p>
+                  バッグを軽くすると移動が楽になり、親の疲れも減ります。
+                  結果として、子どもへの対応にも余裕が生まれます。
+                </p>
+              </div>
+            </article>
           </section>
 
           <section id="updates" class="section">
             <h2 class="section-title">アップデート履歴</h2>
             <p class="lead">ミニマル育児に関する実践記事を継続的に追加・更新します。</p>
             <ul class="update-list">
-              <li>
-                <strong>2026-03-31:</strong> 育児ミニマリストに新記事「トイトレは『待つ』が正解」を追加。
-              </li>
-              <li>
-                <strong>2026-03-30:</strong> 育児ミニマリストに新記事「育児情報の断捨離」を追加。
-              </li>
-              <li><strong>2026-03-31:</strong> ブログ全体をミニマル育児向けの構成に刷新。</li>
+              <li><strong>2026-03-31:</strong> 記事カードから記事本文へ直接ジャンプできる構造に改善。</li>
+              <li><strong>2026-03-31:</strong> ブログ全体のレイアウトと配色を読みやすさ重視で刷新。</li>
+              <li><strong>2026-03-30:</strong> 新記事「育児情報の断捨離」を追加。</li>
             </ul>
             <p class="back-link"><a href="../../index.html">ホームに戻る</a></p>
           </section>
