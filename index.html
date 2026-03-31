@@ -40,11 +40,11 @@
         </div>
         <div class="hero-stats" aria-label="プロジェクト概要">
           <article class="hero-stat">
-            <strong>5</strong>
+            <strong>6</strong>
             <span>公開中のMVP</span>
           </article>
           <article class="hero-stat">
-            <strong>3</strong>
+            <strong>4</strong>
             <span>注力テーマ</span>
           </article>
           <article class="hero-stat">
@@ -79,8 +79,9 @@
           <button class="filter-chip" type="button" data-filter="ai">AI・分析</button>
           <button class="filter-chip" type="button" data-filter="family">育児・生活</button>
           <button class="filter-chip" type="button" data-filter="safety">防災・リサーチ</button>
+          <button class="filter-chip" type="button" data-filter="money">お金・投資</button>
         </div>
-        <p class="filter-status" aria-live="polite">5件のプロジェクトを表示中</p>
+        <p class="filter-status" aria-live="polite">6件のプロジェクトを表示中</p>
       </section>
       <section id="projects" class="projects-section">
         <div class="container">
@@ -195,6 +196,28 @@
                   <li>防災備蓄</li>
                   <li>育児</li>
                   <li>URL共有</li>
+                </ul>
+                <span class="card-link">詳しく見る →</span>
+              </div>
+            </button>
+
+            <!-- 新NISAシミュレーター -->
+            <button class="card card-project" data-tags="money family" style="--card-accent: #059669"
+                    onclick="document.getElementById('modal-nisa').showModal()">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="10" width="36" height="28" rx="4" />
+                  <path d="M14 30 L20 24 L25 28 L34 18" />
+                  <path d="M31 18 H34 V21" />
+                </svg>
+              </div>
+              <div class="card-body">
+                <h3>新NISA積立シミュレーター</h3>
+                <p>積立額・利回り・手数料・税率を細かく設定して、将来の資産額を比較できるツールです。</p>
+                <ul class="tag-list">
+                  <li>新NISA対応</li>
+                  <li>ケース比較</li>
+                  <li>資産形成</li>
                 </ul>
                 <span class="card-link">詳しく見る →</span>
               </div>
@@ -406,6 +429,47 @@
       </div>
       <div class="modal-footer">
         <a class="button modal-go" href="pages/parenting/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: 新NISA積立シミュレーター -->
+    <dialog id="modal-nisa" class="project-modal" style="--card-accent: #059669">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="10" width="36" height="28" rx="4" />
+            <path d="M14 30 L20 24 L25 28 L34 18" />
+            <path d="M31 18 H34 V21" />
+          </svg>
+        </div>
+        <h2>新NISA積立シミュレーター</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          新NISAのつみたて投資枠・成長投資枠に対応した資産形成シミュレーターです。
+          毎月積立、ボーナス投資、手数料、課税口座の税率まで設定できるため、
+          家計の状況に合わせて複数プランを比較できます。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>新NISAの年間上限を自動チェック</li>
+          <li>年次推移テーブルで増え方を可視化</li>
+          <li>最大6ケースの比較で意思決定を支援</li>
+        </ul>
+        <ul class="tag-list">
+          <li>新NISA</li>
+          <li>積立投資</li>
+          <li>株式投資</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/nisa-simulator/index.html">このプロジェクトに進む →</a>
         <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
       </div>
     </dialog>

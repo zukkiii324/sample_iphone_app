@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新NISAつみたて・株式投資シミュレーター</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page nisa-page">
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="../../index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.5 7.2c0-.9.5-1.7 1.2-2.1l5.8-3.3c.9-.5 2-.5 2.9 0l5.8 3.3c.8.4 1.2 1.2 1.2 2.1v6.6c0 .9-.5 1.7-1.2 2.1l-5.8 3.3c-.9.5-2 .5-2.9 0l-5.8-3.3c-.8-.4-1.2-1.2-1.2-2.1V7.2z" />
+          </svg>
+          <span>Sample Web Hub</span>
+        </a>
+        <nav aria-label="ページ内ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="#simulator">シミュレーション</a></li>
+            <li><a href="#scenarios">比較ケース</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero hero-small">
+        <div class="container">
+          <p class="hero-label">資産形成ツール</p>
+          <h1>新NISAつみたて・株式投資シミュレーター</h1>
+          <p>
+            毎月の積立額・ボーナス投資・運用利回り・手数料・課税口座の税率まで細かく設定できます。<br />
+            新NISAの非課税メリットと、課税口座での運用差を同時に確認できます。
+          </p>
+        </div>
+      </section>
+
+      <section id="simulator" class="section">
+        <div class="container simulator-layout">
+          <article class="card panel">
+            <h2>設定</h2>
+            <div class="form-grid">
+              <label>運用年数
+                <input id="years" type="number" min="1" max="40" value="20" />
+              </label>
+              <label>想定利回り（年率 %）
+                <input id="returnRate" type="number" step="0.1" value="5" />
+              </label>
+              <label>手数料（年率 %）
+                <input id="feeRate" type="number" step="0.01" value="0.2" />
+              </label>
+              <label>年率の変動幅（±%）
+                <input id="volatility" type="number" step="0.1" min="0" value="8" />
+              </label>
+              <label>毎月のつみたて投資枠（円）
+                <input id="monthlyTsumitate" type="number" min="0" step="1000" value="50000" />
+              </label>
+              <label>毎月の成長投資枠（円）
+                <input id="monthlyGrowth" type="number" min="0" step="1000" value="30000" />
+              </label>
+              <label>年2回のボーナス投資（1回あたり円）
+                <input id="bonus" type="number" min="0" step="10000" value="100000" />
+              </label>
+              <label>課税口座の税率（%）
+                <input id="taxRate" type="number" min="0" max="40" step="0.1" value="20.315" />
+              </label>
+            </div>
+            <p class="note" id="limitNote" aria-live="polite"></p>
+            <div class="actions">
+              <button id="runBtn" class="button">この条件で試算</button>
+              <button id="addCaseBtn" class="button secondary">比較ケースに追加</button>
+            </div>
+          </article>
+
+          <article class="card panel result-panel">
+            <h2>結果（最終年）</h2>
+            <dl class="result-list">
+              <div><dt>元本合計</dt><dd id="principal">-</dd></div>
+              <div><dt>新NISA評価額</dt><dd id="nisaValue">-</dd></div>
+              <div><dt>課税口座評価額</dt><dd id="taxableValue">-</dd></div>
+              <div><dt>税引後差額（新NISA優位）</dt><dd id="advantage">-</dd></div>
+            </dl>
+            <h3>年次推移</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>年</th><th>元本累計</th><th>新NISA</th><th>課税口座</th></tr>
+                </thead>
+                <tbody id="yearlyTable"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="scenarios" class="section section-muted">
+        <div class="container">
+          <h2 class="section-title">比較ケース</h2>
+          <p class="lead">「追加」した条件を並べて比較できます。家計の余力や相場観に合わせた複数プランを検討しましょう。</p>
+          <div id="caseList" class="case-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
