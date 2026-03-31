@@ -784,6 +784,110 @@ pre {
   margin-top: 0.6rem;
 }
 
+/* --- トップページ専用（Prime Numbers風の上品なトーン） --- */
+.home-page {
+  --color-bg: #f6f8fc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #eef3ff;
+  --color-text: #1c2434;
+  --color-muted: #5f6f8a;
+  --color-border: rgba(52, 72, 120, 0.14);
+  --color-accent: #3157b8;
+  --color-accent-soft: rgba(49, 87, 184, 0.12);
+}
+
+.home-page .site-header {
+  background: rgba(246, 248, 252, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(49, 87, 184, 0.08);
+  box-shadow: 0 10px 22px rgba(20, 33, 61, 0.05);
+}
+
+.home-page .hero {
+  padding: 5.4rem 0 4rem;
+  background: linear-gradient(150deg, #f8fbff 0%, #eef3ff 52%, #e4ecfb 100%);
+  color: var(--color-text);
+}
+
+.home-page .hero::before {
+  background-image:
+    radial-gradient(circle at 22% 28%, rgba(49, 87, 184, 0.16) 0%, transparent 48%),
+    radial-gradient(circle at 76% 32%, rgba(104, 129, 205, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 88%, rgba(187, 204, 238, 0.35) 0%, transparent 48%);
+}
+
+.home-page .hero::after {
+  background:
+    linear-gradient(rgba(49, 87, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(49, 87, 184, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.35;
+}
+
+.home-page .hero-label {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(49, 87, 184, 0.15);
+  color: color-mix(in srgb, var(--color-accent) 76%, #1c2434);
+}
+
+.home-page .hero p,
+.home-page .hero-stat span {
+  color: var(--color-muted);
+}
+
+.home-page .hero-stat {
+  border: 1px solid rgba(49, 87, 184, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.home-page .button {
+  box-shadow: 0 14px 28px rgba(49, 87, 184, 0.24);
+}
+
+.home-page .button:hover,
+.home-page .button:focus {
+  box-shadow: 0 18px 36px rgba(49, 87, 184, 0.3);
+}
+
+.home-page .hero-button {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  box-shadow: 0 12px 26px rgba(49, 87, 184, 0.28);
+}
+
+.home-page .hero-button:hover,
+.home-page .hero-button:focus {
+  background: color-mix(in srgb, var(--color-accent) 88%, #1b2a56);
+  box-shadow: 0 15px 34px rgba(49, 87, 184, 0.34);
+  color: var(--color-accent-contrast);
+}
+
+.home-page .button.secondary {
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--color-accent);
+  border: 1px solid rgba(49, 87, 184, 0.2);
+  box-shadow: 0 8px 22px rgba(26, 39, 68, 0.08);
+}
+
+.home-page .button.secondary:hover,
+.home-page .button.secondary:focus {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.home-page .section {
+  border: 1px solid rgba(49, 87, 184, 0.09);
+}
+
+.home-page button.card-project {
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.home-page button.card-project:hover,
+.home-page button.card-project:focus-visible {
+  border-color: color-mix(in srgb, var(--card-accent, var(--color-accent)) 40%, #d8e1f7);
+  box-shadow: 0 16px 38px color-mix(in srgb, var(--card-accent, var(--color-accent)) 18%, transparent);
+}
+
 /* --- iPad 横向き・小型PC（920px以下） --- */
 @media (max-width: 920px) {
   .project-grid {
