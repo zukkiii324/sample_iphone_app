@@ -45,6 +45,9 @@
               <label>運用年数
                 <input id="years" type="number" min="1" max="40" value="20" />
               </label>
+              <label>開始時の一括投資（円）
+                <input id="initialInvestment" type="number" min="0" step="10000" value="0" />
+              </label>
               <label>想定利回り（年率 %）
                 <input id="returnRate" type="number" step="0.1" value="5" />
               </label>
@@ -53,6 +56,9 @@
               </label>
               <label>年率の変動幅（±%）
                 <input id="volatility" type="number" step="0.1" min="0" value="8" />
+              </label>
+              <label>毎年の積立増額率（%）
+                <input id="annualIncreaseRate" type="number" min="0" step="0.1" value="0" />
               </label>
               <label>毎月のつみたて投資枠（円）
                 <input id="monthlyTsumitate" type="number" min="0" step="1000" value="50000" />
@@ -66,11 +72,19 @@
               <label>課税口座の税率（%）
                 <input id="taxRate" type="number" min="0" max="40" step="0.1" value="20.315" />
               </label>
+              <label>運用後の取り崩し年数（年）
+                <input id="withdrawYears" type="number" min="0" max="40" step="1" value="0" />
+              </label>
             </div>
             <p class="note" id="limitNote" aria-live="polite"></p>
             <div class="actions">
               <button id="runBtn" class="button">この条件で試算</button>
               <button id="addCaseBtn" class="button secondary">比較ケースに追加</button>
+            </div>
+            <div class="preset-buttons">
+              <button class="button secondary" type="button" data-preset="safety">堅実プラン</button>
+              <button class="button secondary" type="button" data-preset="balanced">バランスプラン</button>
+              <button class="button secondary" type="button" data-preset="growth">積極プラン</button>
             </div>
           </article>
 
@@ -81,6 +95,7 @@
               <div><dt>新NISA評価額</dt><dd id="nisaValue">-</dd></div>
               <div><dt>課税口座評価額</dt><dd id="taxableValue">-</dd></div>
               <div><dt>税引後差額（新NISA優位）</dt><dd id="advantage">-</dd></div>
+              <div><dt>毎月の目安取り崩し額</dt><dd id="monthlyWithdraw">-</dd></div>
             </dl>
             <h3>年次推移</h3>
             <div class="table-wrap">

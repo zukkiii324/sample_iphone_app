@@ -47,6 +47,13 @@
   flex-wrap: wrap;
 }
 
+.preset-buttons {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
 .note {
   margin-top: 0.75rem;
   color: var(--color-muted);
