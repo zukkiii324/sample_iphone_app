@@ -1,6 +1,6 @@
 (function () {
   const deductionRate = 0.007;
-  const residentTaxCap = 136500;
+  const residentTaxCap = 97500;
 
   const deductionRules = {
     "new-longterm": {
@@ -105,7 +105,7 @@
     byId("deduction-years").textContent = deductionYears > 0 ? deductionYears + "年" : "対象外";
 
     byId("result-message").textContent =
-      "この試算は、控除率0.7%・住民税控除上限13.65万円を前提にした目安です。最終判断は最新の公的情報で確認しましょう。";
+      "この試算は、控除率0.7%・住民税控除上限9.75万円を前提にした目安です。最終判断は最新の公的情報で確認しましょう。";
   }
 
   byId("calc-button").addEventListener("click", calculate);
