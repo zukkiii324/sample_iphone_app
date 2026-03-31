@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Code有効活用ガイド | Sample Web Hub</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page claude-code">
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="../../index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.5 7.2c0-.9.5-1.7 1.2-2.1l5.8-3.3c.9-.5 2-.5 2.9 0l5.8 3.3c.8.4 1.2 1.2 1.2 2.1v6.6c0 .9-.5 1.7-1.2 2.1l-5.8 3.3c-.9.5-2 .5-2.9 0l-5.8-3.3c-.8-.4-1.2-1.2-1.2-2.1V7.2z" />
+          </svg>
+          <span>Sample Web Hub</span>
+        </a>
+        <nav aria-label="主要ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="../../index.html#projects">プロジェクト一覧</a></li>
+            <li><a href="#visual-guide">使い方の流れ</a></li>
+            <li><a href="#sources">参考ソース</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="breadcrumbs" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span aria-hidden="true">/</span>
+        <span>Claude Code有効活用ガイド</span>
+      </nav>
+
+      <section class="category-hero">
+        <h1>Claude Codeをチームでうまく使うための実践ガイド</h1>
+        <p>
+          公式ドキュメントの最新情報（<strong>2026年3月31日</strong>確認）をもとに、
+          「何から始めればよいか」「どう依頼すると精度が上がるか」を図解でまとめました。
+          非エンジニアの方でも使いやすいよう、専門用語はできるだけやさしく説明しています。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#visual-guide">最短ルートを見る</a>
+          <a class="button secondary" href="#sources">参考ソースを見る</a>
+        </div>
+        <p class="hero-meta">対象：Claude Codeをこれから導入する個人・小規模チーム</p>
+      </section>
+
+      <div class="category-layout">
+        <aside class="category-navigation">
+          <h2>目次</h2>
+          <ul>
+            <li><a href="#visual-guide">図解：導入〜運用の流れ</a></li>
+            <li><a href="#prompt-map">図解：依頼文の作り方</a></li>
+            <li><a href="#operations">運用チェックリスト</a></li>
+            <li><a href="#latest">最新アップデート</a></li>
+            <li><a href="#sources">参考ソース</a></li>
+          </ul>
+        </aside>
+
+        <div class="category-content">
+          <section id="visual-guide" class="section">
+            <h2 class="section-title">図解：導入〜運用の流れ（5ステップ）</h2>
+            <p class="lead">まずは「最小セット」で始めるのが失敗しないコツです。</p>
+
+            <div class="flow-grid" aria-label="Claude Code活用フロー">
+              <article class="flow-card">
+                <span class="step">STEP 1</span>
+                <h3>インストール</h3>
+                <p>公式のQuickstartの手順でCLIを導入します。</p>
+                <code>npm install -g @anthropic-ai/claude-code</code>
+              </article>
+              <article class="flow-card">
+                <span class="step">STEP 2</span>
+                <h3>プロジェクト初期化</h3>
+                <p><code>/init</code> を実行し、プロジェクト用の指示ファイル（CLAUDE.md）を作成します。</p>
+              </article>
+              <article class="flow-card">
+                <span class="step">STEP 3</span>
+                <h3>依頼を具体化</h3>
+                <p>「目的・制約・完了条件」を明示して依頼すると、手戻りが減ります。</p>
+              </article>
+              <article class="flow-card">
+                <span class="step">STEP 4</span>
+                <h3>並列実行</h3>
+                <p>複数タスクはGit worktreeを使って分離し、衝突を避けます。</p>
+              </article>
+              <article class="flow-card">
+                <span class="step">STEP 5</span>
+                <h3>自動化</h3>
+                <p>GitHub Actions連携で、定型作業（要約・レビュー補助など）を自動化します。</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="prompt-map" class="section">
+            <h2 class="section-title">図解：依頼文の作り方（テンプレート）</h2>
+            <p class="lead">Claude Codeは「良い依頼文」で性能差が出ます。下の順序で書くと安定します。</p>
+
+            <div class="prompt-map" role="img" aria-label="依頼文テンプレートの図解">
+              <div class="prompt-block">
+                <h3>1. 目的</h3>
+                <p>「何を実現したいか」を1文で宣言する。</p>
+              </div>
+              <div class="prompt-arrow" aria-hidden="true">→</div>
+              <div class="prompt-block">
+                <h3>2. 制約</h3>
+                <p>使える技術、禁止事項、期限を明示する。</p>
+              </div>
+              <div class="prompt-arrow" aria-hidden="true">→</div>
+              <div class="prompt-block">
+                <h3>3. 完了条件</h3>
+                <p>「どの状態ならOKか」をチェック項目化する。</p>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>依頼例</th>
+                    <th>結果の出やすさ</th>
+                    <th>理由</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>「いい感じに直して」</td>
+                    <td>△ ぶれやすい</td>
+                    <td>目的と完成イメージが曖昧で、修正往復が増えやすい。</td>
+                  </tr>
+                  <tr>
+                    <td>「A画面の離脱率を下げる。制約はHTML/CSSのみ。完了条件は3案＋実装1案」</td>
+                    <td>◎ 安定しやすい</td>
+                    <td>目的・制約・ゴールが明確で、提案の質が上がる。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="operations" class="section">
+            <h2 class="section-title">運用チェックリスト（最初の30日）</h2>
+            <ul class="checklist">
+              <li><strong>初日:</strong> Quickstartで導入し、1つの小タスクで試運転する。</li>
+              <li><strong>1週目:</strong> <code>/init</code> とメモリ機能で「プロジェクトの前提」を固定する。</li>
+              <li><strong>2週目:</strong> Git worktreeで並列タスク運用を試し、衝突率を下げる。</li>
+              <li><strong>3〜4週目:</strong> GitHub Actions連携で定型業務を自動化する。</li>
+            </ul>
+            <p class="data-callout">
+              <strong>運用のポイント</strong>
+              いきなり全業務を任せるより、まずは「議事録要約」「ドキュメント更新」「軽微な修正案作成」など
+              失敗コストが低い業務から段階導入すると、社内展開がスムーズです。
+            </p>
+          </section>
+
+
+
+          <section id="latest" class="section">
+            <h2 class="section-title">最新アップデート（公式Changelogより）</h2>
+            <p class="lead">2026年3月31日時点で確認できる最新版は <strong>2.1.88（2026年3月30日公開）</strong> でした。</p>
+
+            <div class="update-highlight">
+              <article class="update-card">
+                <h3>注目ポイント1</h3>
+                <p>自動判定で拒否された後に再試行を促せる <code>PermissionDenied</code> フックが追加され、運用時の復旧性が上がりました。</p>
+              </article>
+              <article class="update-card">
+                <h3>注目ポイント2</h3>
+                <p><code>@</code> メンション候補に named subagents が表示されるようになり、担当分担がしやすくなりました。</p>
+              </article>
+              <article class="update-card">
+                <h3>注目ポイント3</h3>
+                <p>長時間セッションでのキャッシュ・メモリ関連の修正が複数入り、安定性が改善されています。</p>
+              </article>
+            </div>
+
+            <div class="maturity-chart" role="img" aria-label="Claude Code運用成熟度の可視化">
+              <h3>導入の成熟度イメージ</h3>
+              <p>下に行くほど、業務インパクトが大きい活用です。</p>
+              <div class="maturity-row">
+                <span>レベル1: 単発タスク</span>
+                <div><i style="--bar: 25%"></i></div>
+              </div>
+              <div class="maturity-row">
+                <span>レベル2: 共通プロンプト運用</span>
+                <div><i style="--bar: 45%"></i></div>
+              </div>
+              <div class="maturity-row">
+                <span>レベル3: worktree並列開発</span>
+                <div><i style="--bar: 70%"></i></div>
+              </div>
+              <div class="maturity-row">
+                <span>レベル4: CI連携自動化</span>
+                <div><i style="--bar: 92%"></i></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="sources" class="section">
+            <h2 class="section-title">参考ソース（必読）</h2>
+            <p class="lead">以下は本ページ作成時に確認した一次情報です（最終確認日: 2026-03-31）。</p>
+            <ol class="source-list">
+              <li><a href="https://code.claude.com/docs/en/quickstart" target="_blank" rel="noopener noreferrer">Claude Code Docs: Quickstart</a></li>
+              <li><a href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener noreferrer">Claude Code Docs: Common workflows（Git worktree運用）</a></li>
+              <li><a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener noreferrer">Claude Code Docs: Memory（CLAUDE.mdの扱い）</a></li>
+              <li><a href="https://code.claude.com/docs/en/github-actions" target="_blank" rel="noopener noreferrer">Claude Code Docs: GitHub Actions integration</a></li>
+              <li><a href="https://code.claude.com/docs/en/permission-modes" target="_blank" rel="noopener noreferrer">Claude Code Docs: Permission modes</a></li>
+              <li><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code Docs: Changelog（最新更新の確認）</a></li>
+              <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub: CHANGELOG.md（元データ）</a></li>
+            </ol>
+            <p class="back-link"><a href="../../index.html">ホームに戻る</a></p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <strong>Sample Web Hub</strong>
+        <small>Claude Code Practical Guide © 2026</small>
+      </div>
+    </footer>
+  </body>
+</html>
