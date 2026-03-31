@@ -40,7 +40,7 @@
         </div>
         <div class="hero-stats" aria-label="プロジェクト概要">
           <article class="hero-stat">
-            <strong>4</strong>
+            <strong>5</strong>
             <span>公開中のMVP</span>
           </article>
           <article class="hero-stat">
@@ -80,7 +80,7 @@
           <button class="filter-chip" type="button" data-filter="family">育児・生活</button>
           <button class="filter-chip" type="button" data-filter="safety">防災・リサーチ</button>
         </div>
-        <p class="filter-status" aria-live="polite">4件のプロジェクトを表示中</p>
+        <p class="filter-status" aria-live="polite">5件のプロジェクトを表示中</p>
       </section>
       <section id="projects" class="projects-section">
         <div class="container">
@@ -130,6 +130,29 @@
                   <li>ミニマル育児</li>
                   <li>暮らしの工夫</li>
                   <li>実体験ブログ</li>
+                </ul>
+                <span class="card-link">詳しく見る →</span>
+              </div>
+            </button>
+
+            <!-- 自宅不動産購入ガイド -->
+            <button class="card card-project" data-tags="family" style="--card-accent: #0f766e"
+                    onclick="document.getElementById('modal-home-buying-guide').showModal()">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 22 L24 8 L42 22" />
+                  <path d="M10 20 V40 H38 V20" />
+                  <path d="M20 40 V28 H28 V40" />
+                  <path d="M30 14 H38 V6 H30 Z" />
+                </svg>
+              </div>
+              <div class="card-body">
+                <h3>自宅不動産購入ガイド</h3>
+                <p>住宅購入の全体像を、ローン・金利・税制・学区まで可視化したガイドです。</p>
+                <ul class="tag-list">
+                  <li>住宅ローン</li>
+                  <li>税制・権利</li>
+                  <li>リセール戦略</li>
                 </ul>
                 <span class="card-link">詳しく見る →</span>
               </div>
@@ -262,6 +285,48 @@
       </div>
       <div class="modal-footer">
         <a class="button modal-go" href="pages/lifestyle/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: 自宅不動産購入ガイド -->
+    <dialog id="modal-home-buying-guide" class="project-modal" style="--card-accent: #0f766e">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 22 L24 8 L42 22" />
+            <path d="M10 20 V40 H38 V20" />
+            <path d="M20 40 V28 H28 V40" />
+            <path d="M30 14 H38 V6 H30 Z" />
+          </svg>
+        </div>
+        <h2>自宅不動産購入ガイド</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          初めて住宅を買う方向けに、資金計画から契約前チェックまでを1ページで把握できるガイドです。
+          住宅ローン、金利、住宅ローン減税、リセール、学区、権利（所有権・定期借地）を
+          インフォグラフィック形式で整理しています。
+        </p>
+        <h3>主な機能</h3>
+        <ul>
+          <li>購入ロードマップを5ステップで可視化</li>
+          <li>ローン・金利・税制・権利を比較しやすく整理</li>
+          <li>最終確認に使える公的情報リンクを集約</li>
+        </ul>
+        <ul class="tag-list">
+          <li>住宅ローン</li>
+          <li>金利・減税</li>
+          <li>学区・リセール</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/home-buying-guide/index.html">このプロジェクトに進む →</a>
         <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
       </div>
     </dialog>
