@@ -8,7 +8,7 @@
 
 .simulator-layout {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 1.25rem;
   align-items: start;
 }
@@ -135,12 +135,6 @@ td:first-child {
   margin: 0.25rem 0;
   color: var(--color-muted);
   font-size: 0.88rem;
-}
-
-@media (max-width: 920px) {
-  .simulator-layout {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 720px) {
