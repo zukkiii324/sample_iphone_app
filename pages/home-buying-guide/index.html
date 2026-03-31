@@ -21,6 +21,7 @@
             <li><a href="../../index.html#projects">カテゴリ一覧</a></li>
             <li><a href="#roadmap">購入ロードマップ</a></li>
             <li><a href="#knowledge">重要知識</a></li>
+            <li><a href="#loan-simulator">ローン試算</a></li>
           </ul>
         </nav>
       </div>
@@ -67,6 +68,7 @@
       <nav class="quick-jump" aria-label="ページ内目次">
         <a href="#roadmap">購入ロードマップ</a>
         <a href="#knowledge">6つの重要知識</a>
+        <a href="#loan-simulator">ローン試算</a>
         <a href="#strategy">設計図</a>
         <a href="#official-sources">公的情報</a>
       </nav>
@@ -170,6 +172,86 @@
             </div>
           </section>
 
+
+
+          <section id="loan-simulator" class="section visual-section">
+            <h2 class="section-title">住宅ローン金利・減税かんたん試算</h2>
+            <p class="lead">金利と返済期間を入れると、毎月返済額と住宅ローン減税の目安をその場で確認できます。</p>
+
+            <div class="simulator-grid">
+              <article class="simulator-card">
+                <h3>1) ローン条件を入力</h3>
+                <div class="form-grid">
+                  <label>借入金額（万円）
+                    <input type="number" id="loan-amount" min="500" step="10" value="4500" />
+                  </label>
+                  <label>年利（%）
+                    <input type="number" id="interest-rate" min="0.1" step="0.01" value="0.625" />
+                  </label>
+                  <label>返済期間（年）
+                    <input type="number" id="loan-years" min="5" max="50" step="1" value="35" />
+                  </label>
+                  <label>入居年
+                    <select id="move-in-year">
+                      <option value="2026">2026年</option>
+                      <option value="2025">2025年</option>
+                      <option value="2024">2024年</option>
+                      <option value="2023">2023年</option>
+                    </select>
+                  </label>
+                </div>
+
+                <h3>2) 減税ルールを選ぶ</h3>
+                <div class="form-grid">
+                  <label>住宅の区分
+                    <select id="property-type">
+                      <option value="new-longterm">新築（長期優良・低炭素）</option>
+                      <option value="new-zseh">新築（ZEH水準省エネ）</option>
+                      <option value="new-energy">新築（省エネ基準適合）</option>
+                      <option value="new-other">新築（その他）</option>
+                      <option value="used">中古住宅（要件を満たす）</option>
+                    </select>
+                  </label>
+                  <label>年間の所得税額（円）
+                    <input type="number" id="income-tax" min="0" step="1000" value="180000" />
+                  </label>
+                  <label>年間の住民税所得割（円）
+                    <input type="number" id="resident-tax" min="0" step="1000" value="240000" />
+                  </label>
+                </div>
+                <button type="button" class="button" id="calc-button">試算する</button>
+                <p class="note">※ あくまで目安です。最終確認は税務署・金融機関の最新情報をご確認ください。</p>
+              </article>
+
+              <article class="simulator-card result-card" aria-live="polite">
+                <h3>試算結果（目安）</h3>
+                <dl class="result-list">
+                  <div><dt>毎月返済額</dt><dd id="monthly-payment">-</dd></div>
+                  <div><dt>総返済額</dt><dd id="total-payment">-</dd></div>
+                  <div><dt>初年度の控除上限（制度上）</dt><dd id="deduction-system">-</dd></div>
+                  <div><dt>初年度の控除見込み（税額上限反映後）</dt><dd id="deduction-after-tax">-</dd></div>
+                  <div><dt>控除期間</dt><dd id="deduction-years">-</dd></div>
+                </dl>
+                <p class="result-message" id="result-message">入力後に「試算する」を押してください。</p>
+              </article>
+            </div>
+
+            <div class="rule-board">
+              <article>
+                <h3>減税の基本式</h3>
+                <p>控除額は「年末ローン残高 × 0.7%」が基本です。実際には、借入上限とあなたの税額上限で調整されます。</p>
+              </article>
+              <article>
+                <h3>税額上限の考え方</h3>
+                <p>所得税で引ききれない分は住民税から一部控除できます。住民税側は最大 136,500円/年 が目安です。</p>
+              </article>
+              <article>
+                <h3>控除期間の目安</h3>
+                <p>新築等は原則13年、中古等は10年。入居年や省エネ要件で借入上限が変わります。</p>
+              </article>
+            </div>
+          </section>
+
           <section id="strategy" class="section visual-section">
             <h2 class="section-title">ガイドサイト構築戦略（設計図）</h2>
             <p class="lead">縦スクロールで「把握→比較→実行」に自然に進める、3層の情報設計です。</p>
@@ -219,5 +301,6 @@
         <small>Home Buying Guide © 2026</small>
       </div>
     </footer>
+      <script src="app.js"></script>
   </body>
 </html>
