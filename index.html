@@ -179,6 +179,30 @@
               </div>
             </button>
 
+
+            <!-- Claude Code有効活用ガイド -->
+            <button class="card card-project" data-tags="ai" style="--card-accent: #d97706"
+                    onclick="document.getElementById('modal-claude-code').showModal()">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="8" width="36" height="28" rx="4" />
+                  <path d="M16 20 L22 24 L16 28" />
+                  <path d="M26 28 H34" />
+                  <path d="M14 40 H34" />
+                </svg>
+              </div>
+              <div class="card-body">
+                <h3>Claude Code有効活用ガイド</h3>
+                <p>Claude Codeを実務で活かすコツを、図解と運用チェックリストで解説しています。</p>
+                <ul class="tag-list">
+                  <li>AI活用</li>
+                  <li>図解ガイド</li>
+                  <li>最新情報</li>
+                </ul>
+                <span class="card-link">詳しく見る →</span>
+              </div>
+            </button>
+
             <!-- 育児防災チェックリスト -->
             <button class="card card-project" data-tags="family safety" style="--card-accent: #e11d48"
                     onclick="document.getElementById('modal-parenting').showModal()">
@@ -409,6 +433,48 @@
         <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
       </div>
     </dialog>
+
+    <!-- モーダル: Claude Code有効活用ガイド -->
+    <dialog id="modal-claude-code" class="project-modal" style="--card-accent: #d97706">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="8" width="36" height="28" rx="4" />
+            <path d="M16 20 L22 24 L16 28" />
+            <path d="M26 28 H34" />
+            <path d="M14 40 H34" />
+          </svg>
+        </div>
+        <h2>Claude Code有効活用ガイド</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Claude Codeを導入するチーム向けに、公式ドキュメントをもとにした実践的な使い方をまとめたページです。
+          インストール、依頼文の作り方、並列運用、GitHub Actions自動化までを図解で理解できます。
+        </p>
+        <h3>主な内容</h3>
+        <ul>
+          <li>導入〜運用までの5ステップ図解</li>
+          <li>結果が安定する依頼文テンプレート</li>
+          <li>公式ドキュメントの参考リンク集（最新確認日付き）</li>
+        </ul>
+        <ul class="tag-list">
+          <li>AI活用</li>
+          <li>図解ガイド</li>
+          <li>最新情報</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/claude-code/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
 
     <!-- 広告エリア（フッター上） -->
     <aside class="ad-section" aria-label="広告">

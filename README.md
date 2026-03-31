@@ -11,17 +11,21 @@
 │   └── css/
 │       └── base.css             … 全ページで共有するスタイル
 ├── pages/
-│   ├── business/                … ビジネスカテゴリのサブサイト
+│   ├── claude-code/             … Claude Code活用ガイドのサブサイト
 │   │   ├── index.html
 │   │   └── styles.css
-│   ├── creative/                … クリエイティブカテゴリのサブサイト
+│   ├── disaster-prevention/     … 防災DXリサーチのサブサイト
 │   │   ├── index.html
 │   │   └── styles.css
-│   ├── support/                 … サポートカテゴリのサブサイト
+│   ├── lifestyle/               … ミニマル育児ブログのサブサイト
 │   │   ├── index.html
 │   │   └── styles.css
 │   ├── lifestyle/               … ファミリー＆ライフスタイルカテゴリのサブサイト
 │   └── home-buying-guide/       … 住宅購入ガイドとローン試算アプリ
+│   ├── parenting/               … 育児防災チェックリストのサブサイト
+│   │   ├── index.html
+│   │   └── styles.css
+│   └── tennis/                  … テニススイング分析のサブサイト
 ├── docs/
 │   └── 静的サイト無料デプロイ手順.md … GitHub Pages の手順書（参照用）
 └── 内容.md                       … メモや記事などを置くためのファイル
