@@ -4,27 +4,161 @@ body.home-buying-guide {
   --color-accent-contrast: #ffffff;
 }
 
+body.home-buying-guide .full-bleed-main {
+  width: min(1280px, 97vw);
+}
+
 body.home-buying-guide .category-hero {
-  background: linear-gradient(140deg, rgba(15, 118, 110, 0.26), rgba(20, 184, 166, 0.2));
+  background: linear-gradient(145deg, #0f766e, #14b8a6 60%, #0ea5e9);
+}
+
+.visual-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.visual-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kpi {
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+}
+
+.hero-kpi article {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 0.9rem;
+  text-align: center;
+}
+
+.hero-kpi strong {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.hero-kpi span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 body.home-buying-guide .hero-meta {
   margin-top: 1.4rem;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.roadmap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
+.quick-jump {
+  position: sticky;
+  top: 82px;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-radius: 999px;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.quick-jump a {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+.quick-jump a:hover,
+.quick-jump a:focus {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  text-decoration: none;
+}
+
+.single-column {
+  display: block;
+}
+
+.visual-section {
+  width: 100%;
+  max-width: none;
+  padding: 2.5rem clamp(1rem, 3vw, 2.5rem);
+}
+
+.roadmap-timeline {
   list-style: none;
-  counter-reset: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
 }
 
-.roadmap-card {
+.timeline-step {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.step-badge {
+  background: linear-gradient(150deg, rgba(15, 118, 110, 0.18), rgba(20, 184, 166, 0.14));
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  display: grid;
+  place-items: center;
+  min-height: 94px;
+}
+
+.step-body {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.15rem;
+}
+
+.step-body h3 {
+  margin: 0 0 0.25rem;
+}
+
+.step-body p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.insight-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.insight-card {
+  position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -32,81 +166,64 @@ body.home-buying-guide .hero-meta {
   box-shadow: var(--shadow-sm);
 }
 
-.roadmap-card .step {
-  display: inline-flex;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-accent);
-  background: var(--color-accent-soft);
-  border-radius: 999px;
-  padding: 0.2rem 0.7rem;
-  margin-bottom: 0.8rem;
-}
-
-.roadmap-card h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1.05rem;
-}
-
-.roadmap-card p {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 0.92rem;
-}
-
-.insight-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-}
-
-.insight-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.3rem;
-  box-shadow: var(--shadow-sm);
+.insight-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  background: linear-gradient(var(--color-accent), #14b8a6);
 }
 
 .insight-card h3 {
   margin-top: 0;
-  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.02rem;
 }
 
 .insight-card ul {
   margin: 0;
   padding-left: 1.1rem;
-  color: var(--color-muted);
 }
 
 .insight-card li + li {
   margin-top: 0.35rem;
 }
 
-.strategy-flow {
+.layer-diagram {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-.strategy-flow article {
-  padding: 1.2rem;
+.layer-diagram article {
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
+  border: 1px solid rgba(15, 118, 110, 0.25);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(15, 118, 110, 0.28);
-  background: color-mix(in srgb, var(--color-accent) 6%, #ffffff);
+  padding: 1.15rem;
 }
 
-.strategy-flow h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.02rem;
+.layer-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  margin-bottom: 0.65rem;
 }
 
-.strategy-flow p {
+.layer-diagram h3 {
+  margin: 0 0 0.35rem;
+}
+
+.layer-diagram p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 0.92rem;
 }
 
 .data-callout {
@@ -123,13 +240,27 @@ body.home-buying-guide .hero-meta {
   margin-bottom: 0.3rem;
 }
 
-.source-list {
+.visual-source-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  padding-left: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 0.9rem;
 }
 
-.source-list li + li {
-  margin-top: 0.5rem;
+.visual-source-list li {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.visual-source-list a {
+  display: block;
+  min-height: 100%;
+  padding: 1rem;
+  font-weight: 600;
 }
 
 .back-link {
@@ -145,16 +276,34 @@ body.home-buying-guide .hero-meta {
   margin-right: 0.35rem;
 }
 
-@media (max-width: 720px) {
-  .roadmap-grid,
-  .insight-grid,
-  .strategy-flow {
+@media (max-width: 980px) {
+  .hero-kpi,
+  .insight-board,
+  .layer-diagram,
+  .visual-source-list {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
+  .timeline-step {
     grid-template-columns: 1fr;
   }
 
-  .roadmap-card,
-  .insight-card,
-  .strategy-flow article {
-    padding: 1rem;
+  .step-badge {
+    min-height: auto;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .quick-jump {
+    top: 74px;
+    border-radius: var(--radius-md);
+  }
+
+  .hero-kpi,
+  .insight-board,
+  .layer-diagram,
+  .visual-source-list {
+    grid-template-columns: 1fr;
   }
 }
