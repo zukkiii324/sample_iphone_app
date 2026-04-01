@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>仕様書 | カード還元マップ</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page">
+    <main class="page-shell">
+      <div class="container">
+        <h1>仕様書ページ</h1>
+        <nav class="page-tabs" aria-label="サブプロジェクトページ">
+          <a href="strategy.html">企画・戦略</a>
+          <a href="product-design.html">プロダクトデザイン</a>
+          <a href="spec.html" aria-current="page">仕様書</a>
+          <a href="system-design.html">システムデザイン</a>
+          <a href="index.html">アプリ</a>
+        </nav>
+        <section class="doc-section">
+          <article class="doc-card">
+            <h3>機能要件</h3>
+            <ul>
+              <li>Oricoカード、JCBカード、三菱UFJカードの3種を比較対象にする。</li>
+              <li>エリアごとに高還元チェーン店を3件以上表示する。</li>
+              <li>1タップでおすすめカードを更新し、理由文も同時に表示する。</li>
+            </ul>
+          </article>
+          <article class="doc-card">
+            <h3>非機能要件</h3>
+            <p>バックエンドなしの静的サイトで動作し、データはフロントエンド内のJavaScriptオブジェクトで保持します。</p>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

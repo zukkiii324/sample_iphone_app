@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>カード還元マップアプリ</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page">
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="../../index.html"><span>Sample Web Hub</span></a>
+        <nav aria-label="主要ナビゲーション">
+          <ul class="nav-links">
+            <li><a href="../../index.html">トップへ戻る</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container">
+        <section class="page-intro">
+          <h1>カード還元マップアプリ</h1>
+          <p>エリアごとに「どのカードで払うとお得か」を、地図を開いた直後に判断できるようにしたプロトタイプです。</p>
+        </section>
+
+        <nav class="page-tabs" aria-label="サブプロジェクトページ">
+          <a href="strategy.html">企画・戦略</a>
+          <a href="product-design.html">プロダクトデザイン</a>
+          <a href="spec.html">仕様書</a>
+          <a href="system-design.html">システムデザイン</a>
+          <a href="index.html" aria-current="page">アプリ</a>
+        </nav>
+
+        <section class="layout-grid" aria-label="アプリ画面">
+          <article class="panel">
+            <h2>エリア地図（簡易）</h2>
+            <p>エリアをタップすると、おすすめカードと高還元チェーンを更新します。</p>
+            <div class="area-map" role="group" aria-label="エリア選択">
+              <button class="area-button" type="button" data-area="shibuya" aria-pressed="false">
+                <strong>渋谷駅周辺</strong>
+                <small>日常使いエリア</small>
+              </button>
+              <button class="area-button" type="button" data-area="marunouchi" aria-pressed="false">
+                <strong>丸の内オフィス街</strong>
+                <small>平日ランチ中心</small>
+              </button>
+              <button class="area-button" type="button" data-area="yokohama" aria-pressed="false">
+                <strong>横浜みなとみらい</strong>
+                <small>週末ショッピング</small>
+              </button>
+              <button class="area-button" type="button" data-area="osaka" aria-pressed="false">
+                <strong>梅田ターミナル</strong>
+                <small>乗換・外食中心</small>
+              </button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h2>このエリアの支払い判断</h2>
+            <p id="selected-area"></p>
+            <div class="recommend-card">
+              <strong>おすすめカード: <span id="selected-card"></span></strong>
+              <p id="selected-reason"></p>
+            </div>
+            <h3>高還元チェーン店</h3>
+            <ul class="chain-list" id="chain-list"></ul>
+            <p class="note">※還元率は検証用の想定値です。実運用時は各社の最新キャンペーン情報で上書きしてください。</p>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
