@@ -40,7 +40,7 @@
         </div>
         <div class="hero-stats" aria-label="プロジェクト概要">
           <article class="hero-stat">
-            <strong>6</strong>
+            <strong>8</strong>
             <span>公開中のMVP</span>
           </article>
           <article class="hero-stat">
@@ -81,7 +81,7 @@
           <button class="filter-chip" type="button" data-filter="safety">防災・リサーチ</button>
           <button class="filter-chip" type="button" data-filter="money">お金・投資</button>
         </div>
-        <p class="filter-status" aria-live="polite">6件のプロジェクトを表示中</p>
+        <p class="filter-status" aria-live="polite">8件のプロジェクトを表示中</p>
       </section>
       <section id="projects" class="projects-section">
         <div class="container">
@@ -242,6 +242,29 @@
                   <li>新NISA対応</li>
                   <li>ケース比較</li>
                   <li>資産形成</li>
+                </ul>
+                <span class="card-link">詳しく見る →</span>
+              </div>
+            </button>
+
+            <!-- カード還元率マップ -->
+            <button class="card card-project" data-tags="money" style="--card-accent: #0ea5e9"
+                    onclick="document.getElementById('modal-card-map').showModal()">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 14 H42 V34 H6 Z" />
+                  <path d="M6 22 H42" />
+                  <path d="M12 29 H20" />
+                  <path d="M30 29 H36" />
+                </svg>
+              </div>
+              <div class="card-body">
+                <h3>カード還元率マップ</h3>
+                <p>エリア別に高還元カードを比較し、どのサブページから見るかを選んで進める設計資料つきのMVPです。</p>
+                <ul class="tag-list">
+                  <li>還元率比較</li>
+                  <li>地図UI</li>
+                  <li>設計資料</li>
                 </ul>
                 <span class="card-link">詳しく見る →</span>
               </div>
@@ -494,6 +517,49 @@
       </div>
       <div class="modal-footer">
         <a class="button modal-go" href="pages/nisa-simulator/index.html">このプロジェクトに進む →</a>
+        <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
+      </div>
+    </dialog>
+
+    <!-- モーダル: カード還元率マップ -->
+    <dialog id="modal-card-map" class="project-modal" style="--card-accent: #0ea5e9">
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 14 H42 V34 H6 Z" />
+            <path d="M6 22 H42" />
+            <path d="M12 29 H20" />
+            <path d="M30 29 H36" />
+          </svg>
+        </div>
+        <h2>カード還元率マップ</h2>
+        <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 L6 18" /><path d="M6 6 L18 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          エリアごとの店舗と還元率をまとめて、支払い前に「どのカードがお得か」を判断できるプロトタイプです。
+          下のリンクから、読みたいサブページを選んでそのまま移動できます。
+        </p>
+        <h3>見たい内容を選んで移動</h3>
+        <ul>
+          <li><a href="pages/card-map/index.html">アプリ画面（デモ）</a></li>
+          <li><a href="pages/card-map/strategy.html">企画・戦略</a></li>
+          <li><a href="pages/card-map/product-design.html">プロダクトデザイン</a></li>
+          <li><a href="pages/card-map/spec.html">仕様書</a></li>
+          <li><a href="pages/card-map/system-design.html">システムデザイン</a></li>
+        </ul>
+        <ul class="tag-list">
+          <li>還元率比較</li>
+          <li>地図UI</li>
+          <li>サブサイト選択</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="button modal-go" href="pages/card-map/index.html">まずはアプリを見る →</a>
         <button class="button secondary modal-back" onclick="this.closest('dialog').close()">閉じる</button>
       </div>
     </dialog>
