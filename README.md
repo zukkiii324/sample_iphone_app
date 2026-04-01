@@ -12,6 +12,7 @@
 │       └── base.css             … 全ページで共有するスタイル
 ├── pages/
 │   ├── lifestyle/               … ミニマル育児ブログ
+│   ├── card-map/               … カード還元率マップのサブサイト
 │   ├── parenting/               … 育児防災チェックリスト
 │   ├── disaster-prevention/     … 防災DXリサーチ
 │   ├── home-buying-guide/       … 自宅不動産購入ガイド

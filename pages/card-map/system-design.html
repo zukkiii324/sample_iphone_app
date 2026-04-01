@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>システムデザイン | カード還元マップ</title>
+    <link rel="stylesheet" href="../../assets/css/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="category-page">
+    <main class="page-shell">
+      <div class="container">
+        <h1>システムデザインページ</h1>
+        <nav class="page-tabs" aria-label="サブプロジェクトページ">
+          <a href="strategy.html">企画・戦略</a>
+          <a href="product-design.html">プロダクトデザイン</a>
+          <a href="spec.html">仕様書</a>
+          <a href="system-design.html" aria-current="page">システムデザイン</a>
+          <a href="index.html">アプリ</a>
+        </nav>
+        <section class="doc-section">
+          <article class="doc-card">
+            <h3>構成</h3>
+            <p>静的HTML + CSS + JavaScriptのみで構成。外部APIやサーバー保存は使わず、読み込み速度と運用負荷を最小化します。</p>
+          </article>
+          <article class="doc-card">
+            <h3>データモデル</h3>
+            <p>エリアIDをキーにして「エリア概要」「おすすめカード」「高還元チェーン配列」を持つシンプルな辞書型データを利用します。</p>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
