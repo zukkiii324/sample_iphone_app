@@ -1,0 +1,9 @@
+{
+  "name": "sample_iphone_app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "静的サイトのビルド検証用スクリプト",
+  "scripts": {
+    "build": "node scripts/build-check.mjs"
+  }
+}
