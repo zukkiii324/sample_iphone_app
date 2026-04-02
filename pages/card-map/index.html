@@ -23,7 +23,7 @@
       <div class="container">
         <section class="page-intro">
           <h1>カード還元マップアプリ</h1>
-          <p>エリアごとに「どのカードで払うとお得か」を、地図を開いた直後に判断できるようにしたプロトタイプです。</p>
+          <p>地図上に半透明の範囲オーバーレイを重ね、今いる導線の中で「どのカードで払うとお得か」を直感的に切り替えられるプロトタイプです。</p>
         </section>
 
         <nav class="page-tabs" aria-label="サブプロジェクトページ">
@@ -35,32 +35,100 @@
         </nav>
 
         <section class="layout-grid" aria-label="アプリ画面">
-          <article class="panel">
-            <h2>エリア地図（簡易）</h2>
-            <p>エリアをタップすると、おすすめカードと高還元チェーンを更新します。</p>
-            <div class="area-map" role="group" aria-label="エリア選択">
-              <button class="area-button" type="button" data-area="shibuya" aria-pressed="false">
-                <strong>渋谷駅周辺</strong>
-                <small>日常使いエリア</small>
-              </button>
-              <button class="area-button" type="button" data-area="marunouchi" aria-pressed="false">
-                <strong>丸の内オフィス街</strong>
-                <small>平日ランチ中心</small>
-              </button>
-              <button class="area-button" type="button" data-area="yokohama" aria-pressed="false">
-                <strong>横浜みなとみらい</strong>
-                <small>週末ショッピング</small>
-              </button>
-              <button class="area-button" type="button" data-area="osaka" aria-pressed="false">
-                <strong>梅田ターミナル</strong>
-                <small>乗換・外食中心</small>
-              </button>
+          <article class="panel map-panel">
+            <p class="panel-kicker">Map Overlay Prototype</p>
+            <h2>エリア地図オーバーレイ</h2>
+            <p>範囲オーバーレイを直接タップすると、支払い判断パネルとチェーン候補が同期して更新されます。</p>
+
+            <div class="map-stage">
+              <div class="map-toolbar" aria-live="polite">
+                <div>
+                  <p class="toolbar-label">選択中の範囲</p>
+                  <strong id="selected-overlay-label"></strong>
+                </div>
+                <span class="map-chip" id="selected-overlay-radius"></span>
+              </div>
+
+              <section class="scenario-panel" aria-label="表示シナリオ">
+                <div class="scenario-header">
+                  <div>
+                    <p class="toolbar-label">表示シーン</p>
+                    <strong id="active-scenario-label"></strong>
+                  </div>
+                  <button class="autoplay-toggle" id="autoplay-toggle" type="button" aria-pressed="false">自動再生: OFF</button>
+                </div>
+                <div class="scenario-controls" id="scenario-controls" role="group" aria-label="時間帯シナリオ切替"></div>
+                <p class="scenario-caption" id="scenario-caption" aria-live="polite"></p>
+              </section>
+
+              <div class="map-canvas" aria-describedby="map-helper">
+                <svg class="map-base" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="mapSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f8fbff" />
+                      <stop offset="100%" stop-color="#eef6ff" />
+                    </linearGradient>
+                    <linearGradient id="waterFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d7f0ff" />
+                      <stop offset="100%" stop-color="#b5e3ff" />
+                    </linearGradient>
+                  </defs>
+
+                  <rect x="0" y="0" width="100" height="100" rx="7" fill="url(#mapSurface)" />
+                  <path d="M7 14 H93" class="map-road-line" />
+                  <path d="M10 33 H90" class="map-road-line strong" />
+                  <path d="M8 52 H92" class="map-road-line" />
+                  <path d="M12 72 H88" class="map-road-line" />
+                  <path d="M18 8 V88" class="map-road-line" />
+                  <path d="M39 10 V92" class="map-road-line strong" />
+                  <path d="M61 8 V90" class="map-road-line" />
+                  <path d="M82 12 V86" class="map-road-line" />
+                  <path d="M68 64 C74 52 84 51 91 57 C95 60 96 69 91 73 C84 79 76 77 69 71 Z" class="map-water-shape" />
+                  <path d="M6 46 C15 37 28 33 40 35 C56 38 63 35 74 26" class="map-route-line route-primary" />
+                  <path d="M24 85 C30 69 40 60 55 53 C71 46 80 34 89 16" class="map-route-line route-secondary" />
+                  <circle cx="43" cy="32" r="2.3" class="map-node" />
+                  <circle cx="58" cy="28" r="2.1" class="map-node" />
+                  <circle cx="66" cy="58" r="2.1" class="map-node" />
+                  <circle cx="18" cy="40" r="2.2" class="map-node" />
+                  <text x="41" y="27" class="map-label">渋谷</text>
+                  <text x="54" y="22" class="map-label">丸の内</text>
+                  <text x="61" y="52" class="map-label">みなとみらい</text>
+                  <text x="8" y="34" class="map-label">梅田</text>
+                </svg>
+
+                <div class="area-map" id="area-map" role="group" aria-label="範囲オーバーレイ選択"></div>
+              </div>
+
+              <div class="map-legend" id="map-legend" aria-label="範囲一覧"></div>
+              <p class="map-helper" id="map-helper">半透明で重なった範囲が、そのエリアで優先すべきカード判断の対象です。</p>
             </div>
           </article>
 
-          <article class="panel">
-            <h2>このエリアの支払い判断</h2>
-            <p id="selected-area"></p>
+          <article class="panel detail-panel">
+            <p class="panel-kicker">Decision Panel</p>
+            <h2>この範囲の支払い判断</h2>
+            <div class="live-grid" aria-label="ライブ状況">
+              <article class="live-card">
+                <span>ライブ更新</span>
+                <strong id="live-status"></strong>
+                <small id="last-updated"></small>
+              </article>
+              <article class="live-card">
+                <span>想定節約</span>
+                <strong id="estimated-savings"></strong>
+                <small id="savings-note"></small>
+              </article>
+              <article class="live-card">
+                <span>混雑ヒート</span>
+                <strong id="crowd-score"></strong>
+                <small id="crowd-note"></small>
+              </article>
+            </div>
+            <div class="selection-summary">
+              <span class="selection-badge" id="selected-area-badge"></span>
+              <p id="selected-area" aria-live="polite"></p>
+            </div>
+            <div class="range-stats" id="range-stats" aria-label="範囲の特徴"></div>
             <div class="recommend-card">
               <strong>おすすめカード: <span id="selected-card"></span></strong>
               <p id="selected-reason"></p>
