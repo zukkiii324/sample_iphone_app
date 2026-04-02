@@ -40,15 +40,15 @@
         </div>
         <div class="hero-stats" aria-label="プロジェクト概要">
           <article class="hero-stat">
-            <strong>8</strong>
+            <strong data-countup="8">8</strong>
             <span>公開中のMVP</span>
           </article>
           <article class="hero-stat">
-            <strong>4</strong>
+            <strong data-countup="4">4</strong>
             <span>注力テーマ</span>
           </article>
           <article class="hero-stat">
-            <strong>100%</strong>
+            <strong data-countup="100" data-suffix="%">100%</strong>
             <span>モバイル対応</span>
           </article>
         </div>
@@ -624,50 +624,12 @@
     <footer class="site-footer">
       <div class="container">
         <strong>Sample Web Hub</strong>
-        <small>&copy; 2025 Sample Web Hub. All rights reserved.</small>
+        <small>&copy; <span class="js-current-year">2026</span> Sample Web Hub. All rights reserved.</small>
       </div>
     </footer>
 
-    <script>
-      /* モーダルの背景（backdrop）クリックで閉じる */
-      document.querySelectorAll('.project-modal').forEach(function(dialog) {
-        dialog.addEventListener('click', function(e) {
-          if (e.target === dialog) dialog.close();
-        });
-      });
+    
+    <script src="assets/js/site-enhancements.js" defer></script>
 
-      /* フィルターチップでプロジェクト表示を切り替え */
-      const filterChips = document.querySelectorAll('.filter-chip');
-      const projectCards = document.querySelectorAll('.card-project');
-      const filterStatus = document.querySelector('.filter-status');
-
-      function updateProjectVisibility(tag) {
-        let visibleCount = 0;
-
-        projectCards.forEach(function(card) {
-          const tags = (card.dataset.tags || '').split(' ');
-          const showCard = tag === 'all' || tags.includes(tag);
-          card.hidden = !showCard;
-
-          if (showCard) {
-            visibleCount += 1;
-          }
-        });
-
-        if (filterStatus) {
-          filterStatus.textContent = visibleCount + '件のプロジェクトを表示中';
-        }
-      }
-
-      filterChips.forEach(function(chip) {
-        chip.addEventListener('click', function() {
-          filterChips.forEach(function(button) {
-            button.classList.remove('is-active');
-          });
-          chip.classList.add('is-active');
-          updateProjectVisibility(chip.dataset.filter);
-        });
-      });
-    </script>
   </body>
 </html>

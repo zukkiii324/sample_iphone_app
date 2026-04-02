@@ -1270,3 +1270,100 @@ pre {
     scroll-behavior: auto !important;
   }
 }
+
+.motion-toggle {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.motion-toggle:hover,
+.motion-toggle:focus {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, #ffffff);
+  transform: translateY(-1px);
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 200;
+  background: transparent;
+}
+
+.scroll-progress::after {
+  content: "";
+  display: block;
+  width: var(--progress-width, 0%);
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, #a855f7));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-accent) 45%, transparent);
+  transition: width 0.1s linear;
+}
+
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(14px) scale(0.99);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-ready.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20% auto auto -20%;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 30%, transparent) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(10px);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+body.motion-enabled::before {
+  opacity: 0.7;
+  animation: ambient-float 12s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-float {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(70px, 50px, 0);
+  }
+}
+
+@media (max-width: 920px) {
+  .motion-toggle {
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  body.motion-enabled::before {
+    animation: none;
+  }
+}
